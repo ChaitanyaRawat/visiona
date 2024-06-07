@@ -17,7 +17,7 @@ const populateUser = (query: any) => query.populate({
 })
 
 // ADD IMAGE
-export async function addImage({ image, userId, path }: AddImageParams) {
+export async function addImage({ image, userId, path }: CreateImageArguments) {
   try {
     await connectToDatabase();
 
@@ -41,7 +41,7 @@ export async function addImage({ image, userId, path }: AddImageParams) {
 }
 
 // UPDATE IMAGE
-export async function updateImage({ image, userId, path }: UpdateImageParams) {
+export async function updateImage({ image, userId, path }: UpdateImageArguments) {
   try {
     await connectToDatabase();
 

@@ -1,7 +1,8 @@
-/* eslint-disable no-unused-vars */
+// The Argument types globally declared here are used at appropriate sections of the project to satisfy typescript :)
 
-// ====== USER PARAMS
-declare type CreateUserParams = {
+
+// USER SPECIFIC STUFF
+declare type CreateUserArguments = {
   clerkId: string;
   email: string;
   username: string;
@@ -10,15 +11,18 @@ declare type CreateUserParams = {
   photo: string;
 };
 
-declare type UpdateUserParams = {
+declare type UpdateUserArguments = {
   firstName: string | null;
   lastName: string | null;
   username: string;
   photo: string;
 };
 
-// ====== IMAGE PARAMS
-declare type AddImageParams = {
+
+
+
+// IMAGE SPECIFIC STUFF
+declare type CreateImageArguments = {
   image: {
     title: string;
     publicId: string;
@@ -36,7 +40,7 @@ declare type AddImageParams = {
   path: string;
 };
 
-declare type UpdateImageParams = {
+declare type UpdateImageArguments = {
   image: {
     _id: string;
     title: string;
@@ -71,31 +75,32 @@ declare type Transformations = {
   removeBackground?: boolean;
 };
 
-// ====== TRANSACTION PARAMS
-declare type CheckoutTransactionParams = {
-  plan: string;
-  credits: number;
-  amount: number;
-  buyerId: string;
+declare type TransformationTypeKey = "restore" | "fill" | "remove" | "recolor" | "removeBackground";
+
+declare type TransformationFormProps = {
+  action: "Add" | "Update";
+  userId: string;
+  type: TransformationTypeKey;
+  creditBalance: number;
+  data?: IImage | null;
+  config?: Transformations | null;
 };
 
-declare type CreateTransactionParams = {
-  stripeId: string;
-  amount: number;
-  credits: number;
-  plan: string;
-  buyerId: string;
-  createdAt: Date;
+declare type TransformedImageProps = {
+  image: any;
+  type: string;
+  title: string;
+  transformationConfig: Transformations | null;
+  isTransforming: boolean;
+  hasDownload?: boolean;
+  setIsTransforming?: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
-declare type TransformationTypeKey =
-  | "restore"
-  | "fill"
-  | "remove"
-  | "recolor"
-  | "removeBackground";
 
-// ====== URL QUERY PARAMS
+
+
+
+// URL QUERY STUFF
 declare type FormUrlQueryParams = {
   searchParams: string;
   key: string;
@@ -116,23 +121,4 @@ declare type RemoveUrlQueryParams = {
 declare type SearchParamProps = {
   params: { id: string; type: TransformationTypeKey };
   searchParams: { [key: string]: string | string[] | undefined };
-};
-
-declare type TransformationFormProps = {
-  action: "Add" | "Update";
-  userId: string;
-  type: TransformationTypeKey;
-  creditBalance: number;
-  data?: IImage | null;
-  config?: Transformations | null;
-};
-
-declare type TransformedImageProps = {
-  image: any;
-  type: string;
-  title: string;
-  transformationConfig: Transformations | null;
-  isTransforming: boolean;
-  hasDownload?: boolean;
-  setIsTransforming?: React.Dispatch<React.SetStateAction<boolean>>;
 };

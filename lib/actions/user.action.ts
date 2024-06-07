@@ -6,7 +6,7 @@ import { connectToDatabase } from "../database/mongoose";
 import { handleError } from "../utils";
 
 // CREATE
-export async function createUser(user: CreateUserParams) {
+export async function createUser(user: CreateUserArguments) {
   try {
     await connectToDatabase();
     const newUser = await User.create(user);
@@ -33,7 +33,7 @@ export async function getUserById(userId: string) {
 }
 
 // UPDATE
-export async function updateUser(clerkId: string, user: UpdateUserParams) {
+export async function updateUser(clerkId: string, user: UpdateUserArguments) {
   try {
     await connectToDatabase();
 
