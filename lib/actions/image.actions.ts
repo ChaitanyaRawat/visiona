@@ -78,6 +78,22 @@ export async function deleteImage(imageId: string) {
   }
 }
 
+
+export async function toggleImagePrivacy(imageId: string,privacy:boolean) {
+  try {
+    await connectToDatabase();
+
+    await Image.findByIdAndUpdate(imageId,{isPrivate:privacy});
+  } catch (error) {
+    handleError(error)
+  } finally {
+    redirect('/')
+  }
+}
+
+
+
+
 // GET IMAGE
 export async function getImageById(imageId: string) {
   try {
@@ -94,7 +110,7 @@ export async function getImageById(imageId: string) {
 }
 
 // GET IMAGES
-export async function getAllImages({ limit = 6, page = 1, searchQuery = '' }: {
+export async function getAllPublicImages({ limit = 6, page = 1, searchQuery = '' }: {
   limit?: number;
   page: number;
   searchQuery?: string;
@@ -132,6 +148,8 @@ export async function getAllImages({ limit = 6, page = 1, searchQuery = '' }: {
         }
       }
     }
+
+    query = {...query,isPrivate:false}
    
 
     const skipAmount = (Number(page) - 1) * limit;

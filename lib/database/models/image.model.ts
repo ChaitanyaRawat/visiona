@@ -4,11 +4,11 @@ export interface IImage extends Document {
   title: string;
   transformationType: string;
   publicId: string;
-  secureURL: string; 
+  secureURL: string;
   width?: number;
   height?: number;
-  config?: object; 
-  transformationUrl?: string; 
+  config?: object;
+  transformationUrl?: string;
   aspectRatio?: string;
   color?: string;
   prompt?: string;
@@ -19,6 +19,7 @@ export interface IImage extends Document {
   }
   createdAt?: Date;
   updatedAt?: Date;
+  isPrivate?: boolean;
 }
 
 const ImageSchema = new Schema({
@@ -35,7 +36,8 @@ const ImageSchema = new Schema({
   prompt: { type: String },
   author: { type: Schema.Types.ObjectId, ref: 'User' },
   createdAt: { type: Date, default: Date.now },
-  updatedAt: { type: Date, default: Date.now }
+  updatedAt: { type: Date, default: Date.now },
+  isPrivate: { type: Boolean, default:true }
 });
 
 const Image = models?.Image || model('Image', ImageSchema);

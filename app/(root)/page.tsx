@@ -1,6 +1,6 @@
 import { Collection } from "@/components/shared/Collection"
 import { navLinks } from "@/constants"
-import { getAllImages } from "@/lib/actions/image.actions"
+import { getAllPublicImages } from "@/lib/actions/image.actions"
 import { SignedOut } from "@clerk/nextjs"
 import Image from "next/image"
 import Link from "next/link"
@@ -9,7 +9,7 @@ const Home = async ({ searchParams }: SearchParamProps) => {
   const page = Number(searchParams?.page) || 1;
   const searchQuery = (searchParams?.query as string) || '';
 
-  const images = await getAllImages({ page, searchQuery })
+  const images = await getAllPublicImages({ page, searchQuery })
   // console.log("query = ",searchQuery)
   // console.log(images?.data)
 
@@ -52,16 +52,30 @@ const Home = async ({ searchParams }: SearchParamProps) => {
         <div className="relative z-10 flex flex-col justify-center items-center h-full text-center">
           <h1 className="text-5xl font-bold leading-tight mb-4">Welcome to Visiona</h1>
           <p className="text-lg text-gray-300 mb-8">A Very Powerfull AI Powered Image processing platform</p>
-          {/* <Link href="/sign-in" className="bg-blue-600 text-white hover:bg-blue-500 py-2 px-6 rounded-full text-lg font-semibold transition duration-300 ease-in-out transform hover:scale-105 hover:shadow-lg">Get Started</Link> */}
+          <Link href={"/sign-up"}>
+            <button className="relative my-1 inline-flex items-center justify-center p-0.5 mb-2 me-2 overflow-hidden text-sm font-medium text-white rounded-lg border-2 border-cyan-400 hover:bg-cyan-500 scale-transition-on-hover-110">
+              <span className="relative px-5 py-2.5 bg-opacity-0 font-bold">
+                Get Started
+              </span>
+            </button>
+          </Link>
+          <Link href={"/read-more"}>
+            <button className="relative my-1 inline-flex items-center justify-center p-0.5 mb-2 me-2 overflow-hidden text-sm font-medium text-white rounded-lg border-2 border-cyan-400 hover:bg-cyan-500 scale-transition-on-hover-110">
+              <span className="relative px-5 py-2.5 bg-opacity-0 font-bold">
+                Read More
+              </span>
+            </button>
+          </Link>
         </div>
 
-      </div>
+      </div >
       <div className="bg-black p-4">
         <Collection
           hasSearch={true}
           images={images?.data}
           totalPages={images?.totalPage}
           page={page}
+
         />
       </div>
     </>

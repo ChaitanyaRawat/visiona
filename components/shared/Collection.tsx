@@ -24,11 +24,13 @@ export const Collection = ({
   images,
   totalPages = 1,
   page,
+  collectionHeading = "Explore collection of latest Magical edits",
 }: {
   images: IImage[];
   totalPages?: number;
   page: number;
   hasSearch?: boolean;
+  collectionHeading?: string
 }) => {
   const router = useRouter();
   const searchParams = useSearchParams();
@@ -49,7 +51,7 @@ export const Collection = ({
   return (
     <>
       <div className="collection-heading">
-        <h2 className="h2-bold text-white">Explore collection of latest Magical edits</h2>
+        <h2 className="h2-bold text-white">{collectionHeading}</h2>
         {hasSearch && <Search />}
       </div>
 
@@ -93,6 +95,9 @@ export const Collection = ({
     </>
   );
 };
+
+
+
 
 const Card = ({ image }: { image: IImage }) => {
   return (

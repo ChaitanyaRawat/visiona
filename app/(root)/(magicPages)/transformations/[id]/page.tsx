@@ -20,16 +20,16 @@ const ImageDetails = async ({ params: { id } }: SearchParamProps) => {
 
       <section className="mt-5 flex flex-col justify-center items-center gap-4">
         <div className="p-14-medium md:p-16-medium flex  gap-2">
-          {/* <p className="text-white">Transformation:</p> */}
-          <p className=" capitalize text-cyan-500 gap-2 flex justify-center items-center font-bold">
+          <p className="text-cyan-400">Magic:</p>
+          <p className=" capitalize text-white gap-2 flex justify-center items-center font-bold">
             {image.transformationType}
-            <Image
+            {/* <Image
               src={`/assets/icons/${transformationTypes[image.transformationType].icon}`}
               className="invert"
               width={27}
               height={27}
               alt="logo"
-            />
+            /> */}
           </p>
         </div>
 
@@ -91,7 +91,7 @@ const ImageDetails = async ({ params: { id } }: SearchParamProps) => {
           <div className="mt-4 space-y-4 flex flex-col items-center">
             <button type="button" className="submit-button capitalize .scale-transition-on-hover-110">
               <Link href={`/transformations/${image._id}/update`}>
-                Update
+                Retransform
               </Link>
             </button>
 

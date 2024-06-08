@@ -32,7 +32,7 @@ export const DeleteConfirmation = ({ imageId }: { imageId: string }) => {
         </Button>
       </AlertDialogTrigger>
 
-      <AlertDialogContent className="flex flex-col gap-10">
+      <AlertDialogContent className="flex flex-col gap-10 bg-black text-white">
         <AlertDialogHeader>
           <AlertDialogTitle>
             Are you sure you want to delete this image?

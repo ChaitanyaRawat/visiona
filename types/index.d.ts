@@ -21,7 +21,7 @@ declare type UpdateUserArguments = {
 
 
 
-// IMAGE SPECIFIC STUFF
+// CLOUDINARY TRANSFORMATIONS SPECIFIC STUFF
 declare type CreateImageArguments = {
   image: {
     title: string;
@@ -53,7 +53,8 @@ declare type UpdateImageArguments = {
     transformationURL: string;
     aspectRatio: string | undefined;
     prompt: string | undefined;
-    color: string | undefined;
+    color: string | undefined; 
+    isPrivate: boolean;
   };
   userId: string;
   path: string;

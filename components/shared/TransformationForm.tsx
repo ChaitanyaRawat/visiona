@@ -18,6 +18,7 @@ import { addImage, updateImage } from '@/lib/actions/image.actions'
 import { useRouter } from 'next/navigation'
 import { InsufficientCreditsModal } from './InsufficientCreditsModal'
 import Image from 'next/image'
+import { Switch } from '../ui/switch'
 
 
 export const formSchema = z.object({
@@ -25,7 +26,8 @@ export const formSchema = z.object({
   aspectRatio: z.string().optional(),
   color: z.string().optional(),
   prompt: z.string().optional(),
-  publicId: z.string()
+  publicId: z.string(),
+  isPrivate: z.boolean().default(true),
 })
 
 
@@ -42,12 +44,14 @@ const TransformationForm = ({ action, data = null, userId, type, creditBalance, 
   const [isPending, startTransition] = useTransition()
   const router = useRouter()
 
+
   const initialValues = data && action === 'Update' ? {
     title: data?.title,
     aspectRatio: data?.aspectRatio,
     color: data?.color,
     prompt: data?.prompt,
-    publicId: data?.publicId
+    publicId: data?.publicId,
+    isPrivate: data?.isPrivate,
   } : defaultValues
 
   // 1. Define your form.
@@ -84,7 +88,9 @@ const TransformationForm = ({ action, data = null, userId, type, creditBalance, 
         aspectRatio: values.aspectRatio,
         prompt: values.prompt,
         color: values.color,
+        isPrivate: values?.isPrivate
       }
+      console.log("Image data = ",imageData)
 
       if (action === 'Add') {
         try {
@@ -110,7 +116,8 @@ const TransformationForm = ({ action, data = null, userId, type, creditBalance, 
           const updatedImage = await updateImage({
             image: {
               ...imageData,
-              _id: data._id
+              _id: data._id,
+
             },
             userId,
             path: `/transformations/${data._id}`
@@ -208,7 +215,7 @@ const TransformationForm = ({ action, data = null, userId, type, creditBalance, 
           <CustomField
             control={form.control}
             name='title'
-            formLabel='Add a Title'
+            formLabel='Image Name'
             className='w-full text-white'
             render={({ field }) => <Input {...field} className='input-field' />}
           />
@@ -265,6 +272,31 @@ const TransformationForm = ({ action, data = null, userId, type, creditBalance, 
             </div>
           )}
 
+
+          <div className='mx-auto flex justify-center items-center gap-2 bg-gray-600 w-[210px] rounded-full p-1'>
+
+            <p className='text-white font-bold'>Private Image</p>
+            <CustomField
+              control={form.control}
+              name="isPrivate"
+              formLabel=''
+              render={({ field }) => (
+
+                <Switch
+                  value={field.value}
+                  checked={field.value}
+                  onCheckedChange={field.onChange}
+                />
+
+
+
+              )}
+            />
+          </div>
+
+
+
+
           {/* <div className="media-uploader-field">
             <CustomField
               control={form.control}
@@ -291,6 +323,12 @@ const TransformationForm = ({ action, data = null, userId, type, creditBalance, 
           </div> */}
 
           <div className='flex flex-col gap-4'>
+
+
+
+
+
+
             <button
               type='button'
               className='submit-button capitalize scale-transition-on-hover-110'
