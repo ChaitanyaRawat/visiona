@@ -6,17 +6,16 @@ import { useForm } from "react-hook-form"
 import { Button } from "@/components/ui/button"
 import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
-import { aspectRatioOptions, creditFee, defaultValues, transformationTypes } from '@/constants'
+import { aspectRatioOptions, defaultValues, transformationTypes } from '@/constants'
 import { CustomField } from './CustomField'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { AspectRatioKey, debounce, deepMergeObjects } from '@/lib/utils'
 import MediaUploader from './MediaUploader'
 import TransformedImage from './TransformedImage'
-import { updateCredits } from '@/lib/actions/user.action'
 import { getCldImageUrl } from 'next-cloudinary'
 import { addImage, updateImage } from '@/lib/actions/image.actions'
 import { useRouter } from 'next/navigation'
-import { InsufficientCreditsModal } from './InsufficientCreditsModal'
+
 import Image from 'next/image'
 import { Switch } from '../ui/switch'
 
@@ -32,7 +31,7 @@ export const formSchema = z.object({
 
 
 
-const TransformationForm = ({ action, data = null, userId, type, creditBalance, config = null }: TransformationFormProps) => {
+const TransformationForm = ({ action, data = null, userId, type, config = null }: TransformationFormProps) => {
 
 
   const transformationType = transformationTypes[type]
@@ -164,14 +163,13 @@ const TransformationForm = ({ action, data = null, userId, type, creditBalance, 
 
 
 
-  // TODO: update creditFee to something else
   const onTransformHandler = async () => {
     setIsTransforming(true)
     setTransformationConfig(
       deepMergeObjects(newTransformation, transformationConfig)
     )
     setNewTransformation(null)
-    await updateCredits(userId, creditFee)
+    
   }
 
 
@@ -187,7 +185,7 @@ const TransformationForm = ({ action, data = null, userId, type, creditBalance, 
     <>
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
-          {creditBalance < Math.abs(creditFee) && <InsufficientCreditsModal />}
+         
           <div className="media-uploader-field">
             <CustomField
               control={form.control}

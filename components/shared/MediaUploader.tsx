@@ -30,7 +30,6 @@ const MediaUploader = ({ onValueChange, setImage, image, publicId, type }: Media
         onValueChange(result?.info?.public_id)
         toast({
             title: "Image uploaded successfully",
-            description: "1 credit was deducted from your account",
             duration: 5000,
             className: "success-toast"
         })
@@ -59,7 +58,7 @@ const MediaUploader = ({ onValueChange, setImage, image, publicId, type }: Media
                 <div className='flex flex-col gap-4'>
                     <h3 className='h3-bold text-white text-center'>Before</h3>
                     {publicId ? (
-                        <>
+                        <div onClick={() => open()}>
                             <div className="cursor-pointer overflow-hidden rounded-[10px]">
                                 <CldImage
                                     width={getImageSize(type, image, "width")}
@@ -70,7 +69,7 @@ const MediaUploader = ({ onValueChange, setImage, image, publicId, type }: Media
                                     placeholder={dataUrl as PlaceholderValue}
                                 />
                             </div>
-                        </>
+                        </div>
                     ) : (
                         <div className='media-uploader_cta' onClick={() => open()}>
                             <div className="media-uploader_cta-image scale-transition-on-hover-110 hover:bg-cyan-400">
