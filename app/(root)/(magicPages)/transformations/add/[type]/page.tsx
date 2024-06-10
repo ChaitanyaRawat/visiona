@@ -7,6 +7,7 @@ import { auth } from '@clerk/nextjs/server'
 import { getUserById } from '@/lib/actions/user.action'
 import { redirect } from 'next/navigation'
 import Image from 'next/image'
+import { SearchParamProps, TransformationTypeKey } from '@/lib/definitions'
 
 const AddTransformationTypePage = async ({ params: { type } }: SearchParamProps) => {
   const { userId } = auth()
@@ -15,7 +16,7 @@ const AddTransformationTypePage = async ({ params: { type } }: SearchParamProps)
   const user = await getUserById(userId)
   return (
     <>
-     <div className="w-10  rounded-full border-2 bg-black border-white mb-4 p-1 mx-auto">
+      <div className="w-10  rounded-full border-2 bg-black border-white mb-4 p-1 mx-auto">
         <Image
           src={`/assets/icons/${transformationTypes[type].icon}`}
           alt="icon"
@@ -26,7 +27,7 @@ const AddTransformationTypePage = async ({ params: { type } }: SearchParamProps)
       </div>
       <Header title={transformation.title} subtitle={transformation.subTitle} />
       <section className='mt-7'>
-        <TransformationForm action='Add' userId={user._id} type={transformation.type as TransformationTypeKey}  />
+        <TransformationForm action='Add' userId={user._id} type={transformation.type as TransformationTypeKey} />
       </section>
     </>
   )

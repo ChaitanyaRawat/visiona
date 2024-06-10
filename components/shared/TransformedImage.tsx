@@ -5,6 +5,7 @@ import { getCldImageUrl, CldImage } from 'next-cloudinary'
 import { dataUrl, debounce, download, getImageSize } from '@/lib/utils'
 import { PlaceholderValue } from 'next/dist/shared/lib/get-img-props'
 import { Loader } from 'lucide-react'
+import { TransformedImageProps } from '@/lib/definitions'
 
 
 const TransformedImage = ({ image, type, title, transformationConfig, isTransforming, setIsTransforming, hasDownload = false }: TransformedImageProps) => {
@@ -70,12 +71,12 @@ const TransformedImage = ({ image, type, title, transformationConfig, isTransfor
                 alt='spinner'
                 className='invert'
               />
-              <p className="text-white/80">Please Wait...</p>
+              <p className="text-white/80">Hold on...</p>
             </div>
           )}
         </div>
       ) : (
-        <div className='transformed-placeholder'>
+        <div className='flex-center p-14-medium h-full min-h-72 flex-col gap-5 rounded-[16px] bg-purple-100/20 shadow-inner text-white'>
           <Image
             src="/output.png"
             width={50}

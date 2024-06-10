@@ -5,7 +5,7 @@
       title: "Automated Image Expansion",
       subTitle: "AI outpainting for enlarging an image's scope",
       config: { fillBackground: true },
-      icon: "pencil.png",
+      icon: "/pencil.png",
     },
    
     removeBackground: {
@@ -13,7 +13,7 @@
       title: "Background Removal",
       subTitle: "Utilizes AI to eliminate the image's background",
       config: { removeBackground: true },
-      icon: "scissor.png",
+      icon: "/scissor.png",
     },
     remove: {
       type: "remove",
@@ -22,7 +22,7 @@
       config: {
         remove: { prompt: "", removeShadow: true, multiple: true },
       },
-      icon: "eraser.png",
+      icon: "/eraser.png",
     },
 
     restore: {
@@ -30,7 +30,7 @@
       title: "Image Enhancement",
       subTitle: "Enhances images by eliminating unwanted noise and imperfections ",
       config: { restore: true },
-      icon: "magicwand.png",
+      icon: "/magicwand.png",
     },
     
    
@@ -41,7 +41,7 @@
       config: {
         recolor: { prompt: "", to: "", multiple: true },
       },
-      icon: "paint-brush.png",
+      icon: "/paint-brush.png",
     },
   };
   

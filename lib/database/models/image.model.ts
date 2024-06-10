@@ -19,7 +19,7 @@ export interface IImage extends Document {
   }
   createdAt?: Date;
   updatedAt?: Date;
-  isPrivate?: boolean;
+  isPrivate: boolean;
 }
 
 const ImageSchema = new Schema({

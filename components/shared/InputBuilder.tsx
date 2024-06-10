@@ -12,7 +12,7 @@ import {
 
 import { formSchema } from "./TransformationForm";
 
-type CustomFieldProps = {
+type InputBuilderProps = {
   control: Control<z.infer<typeof formSchema>> | undefined;
   render: (props: { field: any }) => React.ReactNode;
   name: keyof z.infer<typeof formSchema>;
@@ -20,13 +20,13 @@ type CustomFieldProps = {
   className?: string;
 };
 
-export const CustomField = ({
+export const InputBuilder = ({
   control,
   render,
   name,
   formLabel,
   className,
-}: CustomFieldProps) => {
+}: InputBuilderProps) => {
   return (
     <FormField
       control={control}

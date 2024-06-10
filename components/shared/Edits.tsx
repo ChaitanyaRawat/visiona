@@ -18,8 +18,9 @@ import { formUrlQuery } from "@/lib/utils";
 import { Button } from "../ui/button";
 
 import { Search } from "./Search";
+import { TransformationTypeKey } from "@/lib/definitions";
 
-export const Collection = ({
+export const Edits = ({
   hasSearch = false,
   images,
   totalPages = 1,
@@ -50,20 +51,20 @@ export const Collection = ({
 
   return (
     <>
-      <div className="collection-heading">
+      <div className="my-10 flex flex-col gap-5 justify-center items-center">
         <h2 className="h2-bold text-white">{collectionHeading}</h2>
         {hasSearch && <Search />}
       </div>
 
       {images.length > 0 ? (
-        <ul className="collection-list">
+        <ul className="grid grid-cols-1 gap-6 sm:grid-cols-2 xl:grid-cols-3">
           {images.map((image) => (
             <Card image={image} key={image.publicId} />
           ))}
         </ul>
       ) : (
-        <div className="collection-empty">
-          <p className="p-20-semibold">Empty List</p>
+        <div className="flex-center h-60 w-full rounded-[10px] border border-dark-400/10 bg-white/20">
+          <p className="p-20-semibold text-white">No Magic Right now</p>
         </div>
       )}
 
@@ -72,7 +73,7 @@ export const Collection = ({
           <PaginationContent className="flex w-full">
             <button
               disabled={Number(page) <= 1}
-              className="collection-btn"
+              className="button  bg-cyan-400  text-black"
               onClick={() => onPageChange("prev")}
             >
               <PaginationPrevious className="hover:bg-transparent hover:text-white" />
@@ -83,7 +84,7 @@ export const Collection = ({
             </p>
 
             <button
-              className="collection-btn"
+              className="button  bg-cyan-400  text-black"
               onClick={() => onPageChange("next")}
               disabled={Number(page) >= totalPages}
             >
@@ -102,7 +103,7 @@ export const Collection = ({
 const Card = ({ image }: { image: IImage }) => {
   return (
     <li>
-      <Link href={`/transformations/${image._id}`} className="collection-card">
+      <Link href={`/transformations/${image._id}`} className="flex flex-1 cursor-pointer flex-col gap-5 rounded-[16px] border-2 border-cyan-400  bg-black p-4 scale-transition-on-hover">
           <p className="p-20-semibold mr-3 line-clamp-1 text-white text-center">
             {image.title}
           </p>
@@ -130,7 +131,7 @@ const Card = ({ image }: { image: IImage }) => {
         />
         <div className="flex flex-col items-center">
           <Image
-            src={`/assets/icons/${transformationTypes[
+            src={`${transformationTypes[
               image.transformationType as TransformationTypeKey
             ].icon
               }`}

@@ -7,10 +7,10 @@ import { Button } from "@/components/ui/button"
 import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
 import { aspectRatioOptions, defaultValues, transformationTypes } from '@/constants'
-import { CustomField } from './CustomField'
+import { InputBuilder } from './InputBuilder'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { AspectRatioKey, debounce, deepMergeObjects } from '@/lib/utils'
-import MediaUploader from './MediaUploader'
+import UploadWidget from './UploadWidget'
 import TransformedImage from './TransformedImage'
 import { getCldImageUrl } from 'next-cloudinary'
 import { addImage, updateImage } from '@/lib/actions/image.actions'
@@ -18,6 +18,7 @@ import { useRouter } from 'next/navigation'
 
 import Image from 'next/image'
 import { Switch } from '../ui/switch'
+import { TransformationFormProps, Transformations } from '@/lib/definitions'
 
 
 export const formSchema = z.object({
@@ -26,7 +27,7 @@ export const formSchema = z.object({
   color: z.string().optional(),
   prompt: z.string().optional(),
   publicId: z.string(),
-  isPrivate: z.boolean().default(true),
+  isPrivate: z.boolean(),
 })
 
 
@@ -67,7 +68,7 @@ const TransformationForm = ({ action, data = null, userId, type, config = null }
     // console.log(values)
     setIsSubmitting(true)
 
-    if (data || image) {
+    if (image) {
       const transformationUrl = getCldImageUrl({
         width: image?.width,
         height: image?.height,
@@ -89,7 +90,7 @@ const TransformationForm = ({ action, data = null, userId, type, config = null }
         color: values.color,
         isPrivate: values?.isPrivate
       }
-      console.log("Image data = ",imageData)
+      console.log("Image data = ", imageData)
 
       if (action === 'Add') {
         try {
@@ -169,7 +170,7 @@ const TransformationForm = ({ action, data = null, userId, type, config = null }
       deepMergeObjects(newTransformation, transformationConfig)
     )
     setNewTransformation(null)
-    
+
   }
 
 
@@ -185,14 +186,14 @@ const TransformationForm = ({ action, data = null, userId, type, config = null }
     <>
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
-         
+
           <div className="media-uploader-field">
-            <CustomField
+            <InputBuilder
               control={form.control}
               name='publicId'
               className='flex size-full flex-col'
               render={({ field }) => (
-                <MediaUploader
+                <UploadWidget
                   onValueChange={field.onChange}
                   setImage={setImage}
                   publicId={field.value}
@@ -210,7 +211,7 @@ const TransformationForm = ({ action, data = null, userId, type, config = null }
               transformationConfig={transformationConfig}
             />
           </div>
-          <CustomField
+          <InputBuilder
             control={form.control}
             name='title'
             formLabel='Image Name'
@@ -221,7 +222,7 @@ const TransformationForm = ({ action, data = null, userId, type, config = null }
 
 
           {type === 'fill' && (
-            <CustomField control={form.control} name='aspectRatio' formLabel='Aspect Ratio' className='w-full' render={({ field }) => (
+            <InputBuilder control={form.control} name='aspectRatio' formLabel='Aspect Ratio' className='w-full' render={({ field }) => (
               <Select onValueChange={(value) => onSelectFieldHandler(value, field.onChange)} value={field.value}>
                 <SelectTrigger className="select-field">
                   <SelectValue placeholder="Select Dimensions" />
@@ -238,7 +239,7 @@ const TransformationForm = ({ action, data = null, userId, type, config = null }
 
           {(type === 'remove' || type === 'recolor') && (
             <div className="prompt-field">
-              <CustomField
+              <InputBuilder
                 control={form.control}
                 name="prompt"
                 formLabel={type === 'remove' ? 'Object to remove' : 'Object to recolor'}
@@ -253,7 +254,7 @@ const TransformationForm = ({ action, data = null, userId, type, config = null }
               />
 
               {(type === 'recolor') && (
-                <CustomField
+                <InputBuilder
                   control={form.control}
                   name="color"
                   formLabel='Replacement Color'
@@ -274,7 +275,7 @@ const TransformationForm = ({ action, data = null, userId, type, config = null }
           <div className='mx-auto flex justify-center items-center gap-2 bg-gray-600 w-[210px] rounded-full p-1'>
 
             <p className='text-white font-bold'>Private Image</p>
-            <CustomField
+            <InputBuilder
               control={form.control}
               name="isPrivate"
               formLabel=''
@@ -296,12 +297,12 @@ const TransformationForm = ({ action, data = null, userId, type, config = null }
 
 
           {/* <div className="media-uploader-field">
-            <CustomField
+            <InputBuilder
               control={form.control}
               name='publicId'
               className='flex size-full flex-col'
               render={({ field }) => (
-                <MediaUploader
+                <UploadWidget
                   onValueChange={field.onChange}
                   setImage={setImage}
                   publicId={field.value}

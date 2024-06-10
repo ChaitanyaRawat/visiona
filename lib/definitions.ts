@@ -1,8 +1,8 @@
 // The Argument types globally declared here are used at appropriate sections of the project to satisfy typescript :)
 
-
+import { IImage } from "./database/models/image.model";
 // USER SPECIFIC STUFF
-declare type CreateUserArguments = {
+export type CreateUserArguments = {
   clerkId: string;
   email: string;
   username: string;
@@ -11,7 +11,7 @@ declare type CreateUserArguments = {
   photo: string;
 };
 
-declare type UpdateUserArguments = {
+export type UpdateUserArguments = {
   firstName: string | null;
   lastName: string | null;
   username: string;
@@ -22,7 +22,7 @@ declare type UpdateUserArguments = {
 
 
 // CLOUDINARY TRANSFORMATIONS SPECIFIC STUFF
-declare type CreateImageArguments = {
+export type CreateImageArguments = {
   image: {
     title: string;
     publicId: string;
@@ -40,7 +40,7 @@ declare type CreateImageArguments = {
   path: string;
 };
 
-declare type UpdateImageArguments = {
+export type UpdateImageArguments = {
   image: {
     _id: string;
     title: string;
@@ -60,7 +60,7 @@ declare type UpdateImageArguments = {
   path: string;
 };
 
-declare type Transformations = {
+export type Transformations = {
   restore?: boolean;
   fillBackground?: boolean;
   remove?: {
@@ -76,9 +76,9 @@ declare type Transformations = {
   removeBackground?: boolean;
 };
 
-declare type TransformationTypeKey = "restore" | "fill" | "remove" | "recolor" | "removeBackground";
+export type TransformationTypeKey = "restore" | "fill" | "remove" | "recolor" | "removeBackground";
 
-declare type TransformationFormProps = {
+export type TransformationFormProps = {
   action: "Add" | "Update";
   userId: string;
   type: TransformationTypeKey;
@@ -87,7 +87,7 @@ declare type TransformationFormProps = {
   config?: Transformations | null;
 };
 
-declare type TransformedImageProps = {
+export type TransformedImageProps = {
   image: any;
   type: string;
   title: string;
@@ -101,25 +101,26 @@ declare type TransformedImageProps = {
 
 
 
+
 // URL QUERY STUFF
-declare type FormUrlQueryParams = {
+export type FormUrlQueryParams = {
   searchParams: string;
   key: string;
   value: string | number | null;
 };
 
-declare type UrlQueryParams = {
+export type UrlQueryParams = {
   params: string;
   key: string;
   value: string | null;
 };
 
-declare type RemoveUrlQueryParams = {
+export type RemoveUrlQueryParams = {
   searchParams: string;
   keysToRemove: string[];
 };
 
-declare type SearchParamProps = {
+export type SearchParamProps = {
   params: { id: string; type: TransformationTypeKey };
   searchParams: { [key: string]: string | string[] | undefined };
 };

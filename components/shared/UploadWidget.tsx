@@ -9,7 +9,7 @@ import { dataUrl } from '@/lib/utils';
 import { PlaceholderValue } from 'next/dist/shared/lib/get-img-props';
 
 
-type MediaUploaderProps = {
+type UploadWidgetProps = {
     onValueChange: (value: string) => void;
     setImage: React.Dispatch<any>;
     publicId: string;
@@ -17,7 +17,7 @@ type MediaUploaderProps = {
     type: string;
 }
 
-const MediaUploader = ({ onValueChange, setImage, image, publicId, type }: MediaUploaderProps) => {
+const UploadWidget = ({ onValueChange, setImage, image, publicId, type }: UploadWidgetProps) => {
     const { toast } = useToast()
     const onUploadSuccessHandler = (result: any) => {
         setImage((prevState: any) => ({
@@ -58,7 +58,7 @@ const MediaUploader = ({ onValueChange, setImage, image, publicId, type }: Media
                 <div className='flex flex-col gap-4'>
                     <h3 className='h3-bold text-white text-center'>Before</h3>
                     {publicId ? (
-                        <div onClick={() => open()}>
+                        <div>
                             <div className="cursor-pointer overflow-hidden rounded-[10px]">
                                 <CldImage
                                     width={getImageSize(type, image, "width")}
@@ -91,4 +91,4 @@ const MediaUploader = ({ onValueChange, setImage, image, publicId, type }: Media
     )
 }
 
-export default MediaUploader
+export default UploadWidget

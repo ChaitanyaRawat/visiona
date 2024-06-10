@@ -1,8 +1,9 @@
-import { Collection } from "@/components/shared/Collection"
+import { Edits } from "@/components/shared/Edits"
 import { getAllPublicImages } from "@/lib/actions/image.actions"
 import { SignedOut } from "@clerk/nextjs"
 import Image from "next/image"
 import Link from "next/link"
+import { SearchParamProps } from "@/lib/definitions"
 
 const Home = async ({ searchParams }: SearchParamProps) => {
   const page = Number(searchParams?.page) || 1;
@@ -17,7 +18,7 @@ const Home = async ({ searchParams }: SearchParamProps) => {
      
       <div className="relative bg-gradient-to-r from-purple-600 to-blue-600 h-screen text-white overflow-hidden">
         <div className="absolute inset-0">
-          <img src="hero.gif" alt="Background Image" className="object-cover object-center w-full h-full" />
+          <img src="/hero.gif" alt="Background Image" className="object-cover object-center w-full h-full" />
           <div className="absolute inset-0 bg-black opacity-50"></div>
         </div>
 
@@ -42,7 +43,7 @@ const Home = async ({ searchParams }: SearchParamProps) => {
 
       </div >
       <div className="bg-black p-4">
-        <Collection
+        <Edits
           hasSearch={true}
           images={images?.data}
           totalPages={images?.totalPage}

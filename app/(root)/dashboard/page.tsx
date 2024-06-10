@@ -2,12 +2,13 @@ import { auth } from "@clerk/nextjs/server";
 import Image from "next/image";
 import { redirect } from "next/navigation";
 
-import { Collection } from "@/components/shared/Collection";
+import { Edits } from "@/components/shared/Edits";
 import Header from "@/components/shared/Header";
 import { getUserImages } from "@/lib/actions/image.actions";
 import { getUserById } from "@/lib/actions/user.action";
+import { SearchParamProps } from "@/lib/definitions";
 
-const Profile = async ({ searchParams }: SearchParamProps) => {
+const Dashboard = async ({ searchParams }: SearchParamProps) => {
   const page = Number(searchParams?.page) || 1;
   const { userId } = auth();
 
@@ -45,11 +46,11 @@ const Profile = async ({ searchParams }: SearchParamProps) => {
           width={128}
           height={128}
         />
-        <p className="text-center text-white font-bold mt-3">{user.firstName} {user.lastName}</p>
+        <p className="text-center text-white font-bold mt-3">{user.username}</p>
      
 
       <section className="mt-8 md:mt-8">
-        <Collection
+        <Edits
           images={images?.data}
           totalPages={images?.totalPages}
           page={page}
@@ -60,4 +61,4 @@ const Profile = async ({ searchParams }: SearchParamProps) => {
   );
 };
 
-export default Profile;
+export default Dashboard;

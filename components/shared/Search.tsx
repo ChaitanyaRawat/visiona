@@ -44,10 +44,10 @@ export const Search = () => {
         onChange={(e) => setQuery(e.target.value)}
       />
       <Image
-        src="/assets/icons/search.svg"
+        src="/search.png"
         alt="search"
-        width={24}
-        height={24}
+        width={60}
+        height={20}
       />
 
     </div>

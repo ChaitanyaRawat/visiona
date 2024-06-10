@@ -6,6 +6,7 @@ import TransformationForm from "@/components/shared/TransformationForm";
 import { transformationTypes } from "@/constants";
 import { getUserById } from "@/lib/actions/user.action";
 import { getImageById } from "@/lib/actions/image.actions";
+import { TransformationTypeKey,SearchParamProps } from "@/lib/definitions";
 
 const Page = async ({ params: { id } }: SearchParamProps) => {
   const { userId } = auth();

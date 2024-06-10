@@ -1,6 +1,6 @@
-import SideBar from '@/components/shared/SideBar'
+
 import React from 'react'
-import MobileNav from '@/components/shared/MobileNav'
+
 import { Toaster } from '@/components/ui/toaster'
 import Navbar from '@/components/shared/Navbar'
 import Footer from '@/components/shared/Footer'

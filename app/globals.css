@@ -77,9 +77,6 @@
 
 
 
-.auth {
-  @apply flex-center min-h-screen w-full bg-purple-100
-}
 
 .root {
   @apply flex min-h-screen w-full flex-col bg-white lg:flex-row;
@@ -240,36 +237,22 @@
   }
 
   /* Transformation Details */
-  .transformation-grid {
-    @apply grid h-fit min-h-[200px] grid-cols-1 gap-5 py-8 md:grid-cols-2;
-  }
+  
 
   .transformation-original_image {
     @apply h-fit min-h-72 w-full rounded-[10px] bg-purple-100/20 object-cover;
   }
 
   /* Collection Component */
-  .collection-heading {
-    @apply my-10 flex flex-col gap-5 justify-center items-center
-  }
+ 
 
-  .collection-list {
-    @apply grid grid-cols-1 gap-6 sm:grid-cols-2 xl:grid-cols-3;
-  }
+ 
 
-  .collection-empty {
-    @apply flex-center h-60 w-full rounded-[10px] border border-dark-400/10 bg-white/20;
-  }
+  
 
-  .collection-btn {
-    @apply button  bg-cyan-400  text-black;
-  }
 
-  .collection-card {
-    @apply flex flex-1 cursor-pointer flex-col gap-5 rounded-[16px] border-2 border-cyan-400  bg-black p-4 scale-transition-on-hover;
-  }
 
-  /* MediaUploader Component */
+  /* UploadWidget Component */
   .media-uploader_cldImage {
     @apply h-fit min-h-72 w-full rounded-[10px] border border-dashed bg-purple-100/20 object-cover p-2;
   }
@@ -293,7 +276,7 @@
 
   /* Search Component */
   .search {
-    @apply flex w-full rounded-[16px] border-2 border-purple-200/20 bg-white px-4 shadow-sm shadow-purple-200/15 md:max-w-96;
+    @apply flex w-full items-center rounded-[16px]  bg-white pl-4 pr-0 shadow-sm  md:max-w-96;
   }
 
   /* Sidebar Component */
@@ -343,23 +326,13 @@
     @apply flex-center absolute left-[50%] top-[50%] size-full -translate-x-1/2 -translate-y-1/2 flex-col gap-2 rounded-[10px] border bg-dark-700/90;
   }
 
-  .transformed-placeholder {
-    @apply flex-center p-14-medium h-full min-h-72 flex-col gap-5 rounded-[16px] bg-purple-100/20 shadow-inner text-white;
-  }
+  
 }
 
 /* =====  CLERK OVERRIDES */
-.cl-userButtonBox {
-  display: flex;
-  flex-flow: row-reverse;
-  gap: 12px;
-}
 
-.cl-userButtonOuterIdentifier {
-  font-size: 16px;
-  font-weight: 600;
-  color: #384262;
-}
+
+
 
 .scale-transition-on-hover {
   @apply transition duration-300 ease-in-out transform hover:scale-105

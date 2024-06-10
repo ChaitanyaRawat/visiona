@@ -8,6 +8,7 @@ import { Button } from "@/components/ui/button";
 import { getImageById } from "@/lib/actions/image.actions";
 import { getImageSize } from "@/lib/utils";
 import { DeleteConfirmation } from "@/components/shared/DeleteConfirmation";
+import { SearchParamProps } from "@/lib/definitions";
 
 const ImageDetails = async ({ params: { id } }: SearchParamProps) => {
   const { userId } = auth();
@@ -62,7 +63,7 @@ const ImageDetails = async ({ params: { id } }: SearchParamProps) => {
       </section>
 
       <section className="mt-10 border-t border-dark-400/15">
-        <div className="transformation-grid">
+        <div className="grid h-fit min-h-[200px] grid-cols-1 gap-5 py-8 md:grid-cols-2;">
           {/* MEDIA UPLOADER */}
           <div className="flex flex-col items-center gap-4">
             <h3 className="h3-bold text-white">Before</h3>
