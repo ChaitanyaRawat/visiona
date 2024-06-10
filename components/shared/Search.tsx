@@ -37,9 +37,9 @@ export const Search = () => {
   }, [router, searchParams, query]);
 
   return (
-    <div className="search">
+    <div className="flex w-full items-center rounded-[16px]  bg-white pl-4 pr-0 shadow-sm  md:max-w-96">
       <Input
-        className="search-field"
+        className="border-0 bg-transparent text-dark-600 w-full placeholder:text-dark-400 h-[50px] font-medium text-[16px] leading-[140%] focus-visible:ring-offset-0 p-3 focus-visible:ring-transparent"
         placeholder="Browse Visiona"
         onChange={(e) => setQuery(e.target.value)}
       />

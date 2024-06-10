@@ -187,7 +187,7 @@ const TransformationForm = ({ action, data = null, userId, type, config = null }
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
 
-          <div className="media-uploader-field">
+          <div className=" grid h-fit min-h-[200px] grid-cols-1 gap-5 py-4 md:grid-cols-2">
             <InputBuilder
               control={form.control}
               name='publicId'
@@ -216,7 +216,7 @@ const TransformationForm = ({ action, data = null, userId, type, config = null }
             name='title'
             formLabel='Image Name'
             className='w-full text-white'
-            render={({ field }) => <Input {...field} className='input-field' />}
+            render={({ field }) => <Input {...field} className='rounded-[16px] border-2 border-purple-200/20 shadow-sm shadow-purple-200/15  text-black disabled:opacity-100 font-semibold text-[16px] leading-[140%] h-[50px] md:h-[54px] focus-visible:ring-offset-0 px-4 py-3 focus-visible:ring-transparent !important' />}
           />
 
 
@@ -224,12 +224,12 @@ const TransformationForm = ({ action, data = null, userId, type, config = null }
           {type === 'fill' && (
             <InputBuilder control={form.control} name='aspectRatio' formLabel='Aspect Ratio' className='w-full' render={({ field }) => (
               <Select onValueChange={(value) => onSelectFieldHandler(value, field.onChange)} value={field.value}>
-                <SelectTrigger className="select-field">
+                <SelectTrigger className="w-full border-2 border-purple-200/20 shadow-sm shadow-purple-200/15 rounded-[16px] h-[50px] md:h-[54px] text-dark-600 font-semibold text-[16px] leading-[140%] disabled:opacity-100 placeholder:text-dark-400/50 px-4 py-3 focus:ring-offset-0 focus-visible:ring-transparent focus:ring-transparent focus-visible:ring-0 focus-visible:outline-none !important">
                   <SelectValue placeholder="Select Dimensions" />
                 </SelectTrigger>
                 <SelectContent className='font-bold'>
                   {Object.keys(aspectRatioOptions).map
-                    ((key) => (<SelectItem key={key} value={key} className='select-item'>  {aspectRatioOptions[key as AspectRatioKey].label}  </SelectItem>))}
+                    ((key) => (<SelectItem key={key} value={key} className='py-3 cursor-pointer hover:bg-purple-100'>  {aspectRatioOptions[key as AspectRatioKey].label}  </SelectItem>))}
                 </SelectContent>
               </Select>
 
@@ -238,7 +238,7 @@ const TransformationForm = ({ action, data = null, userId, type, config = null }
 
 
           {(type === 'remove' || type === 'recolor') && (
-            <div className="prompt-field">
+            <div className="flex flex-col gap-5 lg:flex-row lg:gap-10">
               <InputBuilder
                 control={form.control}
                 name="prompt"
@@ -247,7 +247,7 @@ const TransformationForm = ({ action, data = null, userId, type, config = null }
                 render={(({ field }) => (
                   <Input
                     value={field.value}
-                    className='input-field'
+                    className='rounded-[16px] border-2 border-purple-200/20 shadow-sm shadow-purple-200/15  text-black disabled:opacity-100 font-semibold text-[16px] leading-[140%] h-[50px] md:h-[54px] focus-visible:ring-offset-0 px-4 py-3 focus-visible:ring-transparent !important'
                     onChange={(e) => onInputChangeHandler("prompt", e.target.value, type, field.onChange)}
                   />
                 ))}
@@ -262,7 +262,7 @@ const TransformationForm = ({ action, data = null, userId, type, config = null }
                   render={({ field }) => (
                     <Input
                       value={field.value}
-                      className='input-field'
+                      className='rounded-[16px] border-2 border-purple-200/20 shadow-sm shadow-purple-200/15  text-black disabled:opacity-100 font-semibold text-[16px] leading-[140%] h-[50px] md:h-[54px] focus-visible:ring-offset-0 px-4 py-3 focus-visible:ring-transparent !important'
                       onChange={(e) => onInputChangeHandler("color", e.target.value, 'recolor', field.onChange)}
                     />
                   )}
@@ -296,30 +296,7 @@ const TransformationForm = ({ action, data = null, userId, type, config = null }
 
 
 
-          {/* <div className="media-uploader-field">
-            <InputBuilder
-              control={form.control}
-              name='publicId'
-              className='flex size-full flex-col'
-              render={({ field }) => (
-                <UploadWidget
-                  onValueChange={field.onChange}
-                  setImage={setImage}
-                  publicId={field.value}
-                  image={image}
-                  type={type}
-                />
-              )}
-            />
-            <TransformedImage
-              image={image}
-              type={type}
-              title={form.getValues().title}
-              isTransforming={isTransforming}
-              setIsTransforming={setIsTransforming}
-              transformationConfig={transformationConfig}
-            />
-          </div> */}
+        
 
           <div className='flex flex-col gap-4'>
 
@@ -330,7 +307,7 @@ const TransformationForm = ({ action, data = null, userId, type, config = null }
 
             <button
               type='button'
-              className='submit-button capitalize scale-transition-on-hover-110'
+              className='bg-cyan-500 mx-auto text-white bg-cover rounded-full py-4 px-6 font-semibold text-[16px] leading-[140%] h-[50px] w-1/2 md:h-[54px] cursor-pointer disabled:bg-cyan-700 capitalize scale-transition-on-hover-110'
               disabled={isTransforming || newTransformation === null}
               onClick={onTransformHandler}
             >
@@ -341,7 +318,7 @@ const TransformationForm = ({ action, data = null, userId, type, config = null }
 
             <button
               type='submit'
-              className='submit-button capitalize scale-transition-on-hover-110'
+              className='bg-cyan-500 mx-auto text-white bg-cover rounded-full py-4 px-6 font-semibold text-[16px] leading-[140%] h-[50px] w-1/2 md:h-[54px] cursor-pointer disabled:bg-cyan-700 capitalize scale-transition-on-hover-110'
               disabled={isSubmitting || isTransforming || image === null || transformationConfig === null}
             >
               {isSubmitting ? 'Submitting...' : "Save"}

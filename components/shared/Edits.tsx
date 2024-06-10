@@ -52,7 +52,7 @@ export const Edits = ({
   return (
     <>
       <div className="my-10 flex flex-col gap-5 justify-center items-center">
-        <h2 className="h2-bold text-white">{collectionHeading}</h2>
+        <h2 className="text-[30px] font-bold md:text-[36px] leading-[110%] text-white">{collectionHeading}</h2>
         {hasSearch && <Search />}
       </div>
 
@@ -63,8 +63,8 @@ export const Edits = ({
           ))}
         </ul>
       ) : (
-        <div className="flex-center h-60 w-full rounded-[10px] border border-dark-400/10 bg-white/20">
-          <p className="p-20-semibold text-white">No Magic Right now</p>
+        <div className="flex justify-center items-center h-60 w-full rounded-[10px] border border-dark-400/10 bg-white/20">
+          <p className="font-semibold text-[20px] leading-[140%] text-white">No Magic Right now</p>
         </div>
       )}
 
@@ -73,18 +73,18 @@ export const Edits = ({
           <PaginationContent className="flex w-full">
             <button
               disabled={Number(page) <= 1}
-              className="button  bg-cyan-400  text-black"
+              className="py-4 px-6 flex justify-center items-center gap-3 rounded-full font-semibold text-[16px] leading-[140%] focus-visible:ring-offset-0 focus-visible:ring-transparent bg-cyan-400  text-black"
               onClick={() => onPageChange("prev")}
             >
               <PaginationPrevious className="hover:bg-transparent hover:text-white" />
             </button>
 
-            <p className="flex-center p-16-medium w-fit flex-1 text-white">
+            <p className="flex justify-center items-center font-medium text-[16px] leading-[140%] w-fit flex-1 text-white">
               {page} / {totalPages}
             </p>
 
             <button
-              className="button  bg-cyan-400  text-black"
+              className="py-4 px-6 flex justify-center items-center gap-3 rounded-full font-semibold text-[16px] leading-[140%] focus-visible:ring-offset-0 focus-visible:ring-transparent  bg-cyan-400  text-black"
               onClick={() => onPageChange("next")}
               disabled={Number(page) >= totalPages}
             >
@@ -104,10 +104,10 @@ const Card = ({ image }: { image: IImage }) => {
   return (
     <li>
       <Link href={`/transformations/${image._id}`} className="flex flex-1 cursor-pointer flex-col gap-5 rounded-[16px] border-2 border-cyan-400  bg-black p-4 scale-transition-on-hover">
-          <p className="p-20-semibold mr-3 line-clamp-1 text-white text-center">
+          <p className="font-semibold text-[20px] leading-[140%] mr-3 line-clamp-1 text-white text-center">
             {image.title}
           </p>
-          <p className="p-20-semibold mr-3 line-clamp-1 text-cyan-400">Before</p>
+          <p className="font-semibold text-[20px] leading-[140%] mr-3 line-clamp-1 text-cyan-400">Before</p>
       <CldImage
           src={image.publicId}
           alt={image.title}
@@ -117,7 +117,7 @@ const Card = ({ image }: { image: IImage }) => {
           className="h-40 w-full rounded-[10px] object-cover border-2 border-white"
           sizes="(max-width: 767px) 100vw, (max-width: 1279px) 50vw, 33vw"
         />
-          <p className="p-20-semibold mr-3 line-clamp-1 text-cyan-400">After</p>
+          <p className="font-semibold text-[20px] leading-[140%] mr-3 line-clamp-1 text-cyan-400">After</p>
 
         <CldImage
           src={image.publicId}

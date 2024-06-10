@@ -26,7 +26,7 @@ const page = () => {
                   <div className="border-2 border-cyan-500 border-opacity-75 p-6 rounded-lg  text-white hover:bg-cyan-300 hover:text-black scale-transition-on-hover">
                     <div className="w-10 h-10 inline-flex items-center justify-center rounded-full border-2 bg-black border-white mb-4 p-1">
                       <Image
-                        src={`/assets/icons/${curr.icon}`}
+                        src={`${curr.icon}`}
                         alt="icon"
                         width={24}
                         height={24}

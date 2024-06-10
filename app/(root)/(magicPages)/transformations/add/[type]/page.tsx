@@ -18,7 +18,7 @@ const AddTransformationTypePage = async ({ params: { type } }: SearchParamProps)
     <>
       <div className="w-10  rounded-full border-2 bg-black border-white mb-4 p-1 mx-auto">
         <Image
-          src={`/assets/icons/${transformationTypes[type].icon}`}
+          src={`${transformationTypes[type].icon}`}
           alt="icon"
           width={30}
           height={30}

@@ -31,7 +31,7 @@ const UploadWidget = ({ onValueChange, setImage, image, publicId, type }: Upload
         toast({
             title: "Image uploaded successfully",
             duration: 5000,
-            className: "success-toast"
+            className: "bg-green-400 text-white font-bold"
         })
     }
     const onUploadErrorHandler = () => {
@@ -39,7 +39,7 @@ const UploadWidget = ({ onValueChange, setImage, image, publicId, type }: Upload
             title: "Somethng went wrong while uploading",
             description: "please try again",
             duration: 5000,
-            className: "error-toast"
+            className: "bg-red-500 text-white font-bold"
         })
     }
 
@@ -56,7 +56,7 @@ const UploadWidget = ({ onValueChange, setImage, image, publicId, type }: Upload
         >
             {({ open }) => (
                 <div className='flex flex-col gap-4'>
-                    <h3 className='h3-bold text-white text-center'>Before</h3>
+                    <h3 className='font-bold text-[30px] leading-[140%] text-white text-center'>Before</h3>
                     {publicId ? (
                         <div>
                             <div className="cursor-pointer overflow-hidden rounded-[10px]">
@@ -71,8 +71,8 @@ const UploadWidget = ({ onValueChange, setImage, image, publicId, type }: Upload
                             </div>
                         </div>
                     ) : (
-                        <div className='media-uploader_cta' onClick={() => open()}>
-                            <div className="media-uploader_cta-image scale-transition-on-hover-110 hover:bg-cyan-400">
+                        <div className='flex justify-center items-center flex h-72 cursor-pointer flex-col gap-5 rounded-[16px]  bg-purple-100/20 shadow-inner text-white' onClick={() => open()}>
+                            <div className="rounded-[16px] bg-white  p-5 shadow-sm shadow-purple-200/50 scale-transition-on-hover-110 hover:bg-cyan-400">
                                 <Image
                                     src="/upload.png"
                                     alt="Add Image"
@@ -80,7 +80,7 @@ const UploadWidget = ({ onValueChange, setImage, image, publicId, type }: Upload
                                     height={24}
                                 />
                             </div>
-                            <p className='p-14-medium'>Click Here to upload Image</p>
+                            <p className='font-medium text-[14px] leading-[120%]'>Click Here to upload Image</p>
                         </div>
                     )}
                 </div>

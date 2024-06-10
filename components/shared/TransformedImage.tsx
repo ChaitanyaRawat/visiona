@@ -28,12 +28,12 @@ const TransformedImage = ({ image, type, title, transformationConfig, isTransfor
     <div className='flex flex-col gap-4'>
       <div className="flex justify-center">
 
-        <h3 className='h3-bold text-white'>After</h3>
+        <h3 className='font-bold text-[30px] leading-[140%] text-white'>After</h3>
 
 
         {hasDownload && (
           <button
-            className="download-btn text-white scale-transition-on-hover-110"
+            className="mt-2 flex items-center gap-2 px-2 text-white scale-transition-on-hover-110"
             onClick={downloadHandler}
           >
             <Image
@@ -56,14 +56,14 @@ const TransformedImage = ({ image, type, title, transformationConfig, isTransfor
             alt={image.title}
             sizes="(max-width:767px) 100vw , 50vw"
             placeholder={dataUrl as PlaceholderValue}
-            className='transformed-image'
+            className='h-fit min-h-72 w-full rounded-[10px] bg-purple-100/20 object-cover'
             onLoad={() => { setIsTransforming && setIsTransforming(false) }}
             onError={() => { debounce(() => { setIsTransforming && setIsTransforming(false) }, 8000)() }}
             {...transformationConfig}
           />
 
           {isTransforming && (
-            <div className='transforming-loader'>
+            <div className='flex justify-center items-center absolute left-[50%] top-[50%] size-full -translate-x-1/2 -translate-y-1/2 flex-col gap-2 rounded-[10px] border bg-dark-700/90'>
               <Image
                 src="/loader.gif"
                 width={80}
@@ -76,7 +76,7 @@ const TransformedImage = ({ image, type, title, transformationConfig, isTransfor
           )}
         </div>
       ) : (
-        <div className='flex-center p-14-medium h-full min-h-72 flex-col gap-5 rounded-[16px] bg-purple-100/20 shadow-inner text-white'>
+        <div className='flex justify-center items-center font-medium text-[14px] leading-[120%] h-full min-h-72 flex-col gap-5 rounded-[16px] bg-purple-100/20 shadow-inner text-white'>
           <Image
             src="/output.png"
             width={50}
