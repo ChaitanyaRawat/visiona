@@ -71,7 +71,7 @@ const UploadWidget = ({ onValueChange, setImage, image, publicId, type }: Upload
                             </div>
                         </div>
                     ) : (
-                        <div className='flex justify-center items-center flex h-72 cursor-pointer flex-col gap-5 rounded-[16px]  bg-purple-100/20 shadow-inner text-white' onClick={() => open()}>
+                        <div className='flex justify-center items-center h-72 cursor-pointer flex-col gap-5 rounded-[16px]  bg-purple-100/20 shadow-inner text-white' onClick={() => open()}>
                             <div className="rounded-[16px] bg-white  p-5 shadow-sm shadow-purple-200/50 scale-transition-on-hover-110 hover:bg-cyan-400">
                                 <Image
                                     src="/upload.png"
