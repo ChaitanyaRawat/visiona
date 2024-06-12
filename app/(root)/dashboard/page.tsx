@@ -1,7 +1,6 @@
 import { auth } from "@clerk/nextjs/server";
 import Image from "next/image";
 import { redirect } from "next/navigation";
-
 import { Edits } from "@/components/shared/Edits";
 import Header from "@/components/shared/Header";
 import { findUserImages } from "@/lib/actions/image.actions";
@@ -21,7 +20,6 @@ const Dashboard = async ({ searchParams }: SearchParamProps) => {
     <div className="bg-black p-20">
       <Header title="Dashboard" />
 
-      
         <Image
           src={user.photo}
           className="w-32 group-hover:w-36 group-hover:h-36 h-32 object-center object-cover rounded-full transition-all duration-500 delay-500 transform mx-auto mt-5"

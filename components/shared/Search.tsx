@@ -3,9 +3,8 @@
 import Image from "next/image";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
-
 import { Input } from "@/components/ui/input";
-import { formUrlQuery, removeKeysFromQuery } from "@/lib/utils";
+import { createUrlQuery, reduceUrlQuery } from "@/lib/utils";
 
 export const Search = () => {
   const router = useRouter();
@@ -15,7 +14,7 @@ export const Search = () => {
   useEffect(() => {
     const delayDebounceFn = setTimeout(() => {
       if (query) {
-        const newUrl = formUrlQuery({
+        const newUrl = createUrlQuery({
           searchParams: searchParams.toString(),
           key: "query",
           value: query,
@@ -23,7 +22,7 @@ export const Search = () => {
 
         router.push(newUrl, { scroll: false });
       } else {
-        const newUrl = removeKeysFromQuery({
+        const newUrl = reduceUrlQuery({
           searchParams: searchParams.toString(),
           keysToRemove: ["query"],
         });

@@ -1,22 +1,23 @@
-"use server";
+"use server"
 
-import { revalidatePath } from "next/cache";
+import { CreateImageArguments, UpdateImageArguments } from "../definitions";
 import { connectToDatabase } from "../database/mongoose";
-import { handleError } from "../utils";
 import User from "../database/models/user.model";
 import Image from "../database/models/image.model";
 import { redirect } from "next/navigation";
-import { CreateImageArguments,UpdateImageArguments } from "../definitions";
 import { v2 as cloudinary } from 'cloudinary'
+import { revalidatePath } from "next/cache";
+import { errorHandler } from "../utils";
 
 
+// Utility function to populate the author of an image
 const populateUser = (query: any) => query.populate({
   path: 'author',
   model: User,
   select: '_id firstName lastName clerkId'
 })
 
-// ADD IMAGE
+// Create an image
 export async function createImage({ image, userId, path }: CreateImageArguments) {
   try {
     await connectToDatabase();
@@ -36,11 +37,11 @@ export async function createImage({ image, userId, path }: CreateImageArguments)
 
     return JSON.parse(JSON.stringify(newImage));
   } catch (error) {
-    handleError(error)
+    errorHandler(error)
   }
 }
 
-// UPDATE IMAGE
+// Update an image
 export async function updateImage({ image, userId, path }: UpdateImageArguments) {
   try {
     await connectToDatabase();
@@ -61,40 +62,37 @@ export async function updateImage({ image, userId, path }: UpdateImageArguments)
 
     return JSON.parse(JSON.stringify(updatedImage));
   } catch (error) {
-    handleError(error)
+    errorHandler(error)
   }
 }
 
-// DELETE IMAGE
+// Delete an image
 export async function deleteImage(imageId: string) {
   try {
     await connectToDatabase();
 
     await Image.findByIdAndDelete(imageId);
   } catch (error) {
-    handleError(error)
+    errorHandler(error)
   } finally {
     redirect('/')
   }
 }
 
-
-export async function toggleImagePrivacy(imageId: string,privacy:boolean) {
+// Toggle the privacy of an image
+export async function toggleImagePrivacy(imageId: string, privacy: boolean) {
   try {
     await connectToDatabase();
 
-    await Image.findByIdAndUpdate(imageId,{isPrivate:privacy});
+    await Image.findByIdAndUpdate(imageId, { isPrivate: privacy });
   } catch (error) {
-    handleError(error)
+    errorHandler(error)
   } finally {
     redirect('/')
   }
 }
 
-
-
-
-// GET IMAGE
+// Find an image by its id
 export async function findImageById(imageId: string) {
   try {
     await connectToDatabase();
@@ -105,11 +103,11 @@ export async function findImageById(imageId: string) {
 
     return JSON.parse(JSON.stringify(image));
   } catch (error) {
-    handleError(error)
+    errorHandler(error)
   }
 }
 
-// GET IMAGES
+// Find all public images
 export async function findAllPublicImages({ limit = 6, page = 1, searchQuery = '' }: {
   limit?: number;
   page: number;
@@ -136,7 +134,7 @@ export async function findAllPublicImages({ limit = 6, page = 1, searchQuery = '
       .execute();
 
     const resourceIds = resources.map((resource: any) => (resource.public_id));
- 
+
 
 
     let query = {};
@@ -149,8 +147,8 @@ export async function findAllPublicImages({ limit = 6, page = 1, searchQuery = '
       }
     }
 
-    query = {...query,isPrivate:false}
-   
+    query = { ...query, isPrivate: false }
+
 
     const skipAmount = (Number(page) - 1) * limit;
 
@@ -169,11 +167,11 @@ export async function findAllPublicImages({ limit = 6, page = 1, searchQuery = '
       savedImages,
     }
   } catch (error) {
-    handleError(error)
+    errorHandler(error)
   }
 }
 
-// GET IMAGES BY USER
+// Find images by a user's id
 export async function findUserImages({
   limit = 6,
   page = 1,
@@ -200,6 +198,7 @@ export async function findUserImages({
       totalPages: Math.ceil(totalImages / limit),
     };
   } catch (error) {
-    handleError(error);
+    errorHandler(error);
   }
 }
+

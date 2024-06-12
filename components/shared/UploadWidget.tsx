@@ -4,7 +4,7 @@ import React from 'react'
 import { useToast } from '../ui/use-toast'
 import { CldImage, CldUploadWidget } from "next-cloudinary"
 import Image from 'next/image';
-import { getImageSize } from '@/lib/utils';
+import { findImageDimensions } from '@/lib/utils';
 import { dataUrl } from '@/lib/utils';
 import { PlaceholderValue } from 'next/dist/shared/lib/get-img-props';
 
@@ -61,8 +61,8 @@ const UploadWidget = ({ onValueChange, setImage, image, publicId, type }: Upload
                         <div>
                             <div className="cursor-pointer overflow-hidden rounded-[10px]">
                                 <CldImage
-                                    width={getImageSize(type, image, "width")}
-                                    height={getImageSize(type, image, "height")}
+                                    width={findImageDimensions(type, image, "width")}
+                                    height={findImageDimensions(type, image, "height")}
                                     src={publicId}
                                     alt='image'
                                     sizes="(max-width:767px) 100vw , 50vw"

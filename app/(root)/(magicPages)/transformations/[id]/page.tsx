@@ -1,14 +1,13 @@
 import { auth } from "@clerk/nextjs/server";
 import Image from "next/image";
 import Link from "next/link";
-import { transformationTypes } from "@/constants";
 import Header from "@/components/shared/Header";
 import TransformedImage from "@/components/shared/TransformedImage";
-import { Button } from "@/components/ui/button";
 import { findImageById } from "@/lib/actions/image.actions";
-import { getImageSize } from "@/lib/utils";
+import { findImageDimensions } from "@/lib/utils";
 import { DeleteConfirmation } from "@/components/shared/DeleteConfirmation";
 import { SearchParamProps } from "@/lib/definitions";
+import { transformationTypes } from "@/constants";
 
 const ImageDetails = async ({ params: { id } }: SearchParamProps) => {
   const { userId } = auth();
@@ -23,14 +22,14 @@ const ImageDetails = async ({ params: { id } }: SearchParamProps) => {
         <div className="font-medium md:font-medium text-[16px] leading-[140%] flex  gap-2">
           <p className="text-cyan-400">Magic:</p>
           <p className=" capitalize text-white gap-2 flex justify-center items-center font-bold">
+            {image.transformationType}
             {/* <Image
               src={`${transformationTypes[image.transformationType].icon}`}
               className="invert"
-              width={27}
-              height={27}
+              width={24}
+              height={24}
               alt="logo"
             /> */}
-            {image.transformationType}
           </p>
         </div>
 
@@ -69,8 +68,8 @@ const ImageDetails = async ({ params: { id } }: SearchParamProps) => {
             <h3 className="font-bold text-[30px] leading-[140%] text-white">Before</h3>
 
             <Image
-              width={getImageSize(image.transformationType, image, "width")}
-              height={getImageSize(image.transformationType, image, "height")}
+              width={findImageDimensions(image.transformationType, image, "width")}
+              height={findImageDimensions(image.transformationType, image, "height")}
               src={image.secureURL}
               alt="image"
               className="h-fit min-h-72 w-full rounded-[10px] bg-purple-100/20 object-cover"

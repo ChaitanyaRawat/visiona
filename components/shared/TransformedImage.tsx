@@ -2,9 +2,8 @@
 import React from 'react'
 import Image from 'next/image'
 import { getCldImageUrl, CldImage } from 'next-cloudinary'
-import { dataUrl, debounce, download, getImageSize } from '@/lib/utils'
+import { dataUrl, setDelay, download, findImageDimensions } from '@/lib/utils'
 import { PlaceholderValue } from 'next/dist/shared/lib/get-img-props'
-import { Loader } from 'lucide-react'
 import { TransformedImageProps } from '@/lib/definitions'
 
 
@@ -20,8 +19,6 @@ const TransformedImage = ({ image, type, title, transformationConfig, isTransfor
       ...transformationConfig
     }), title)
   }
-
-
 
 
   return (
@@ -50,15 +47,15 @@ const TransformedImage = ({ image, type, title, transformationConfig, isTransfor
       {image?.publicId ? (
         <div className='relative'>
           <CldImage
-            width={getImageSize(type, image, "width")}
-            height={getImageSize(type, image, "height")}
+            width={findImageDimensions(type, image, "width")}
+            height={findImageDimensions(type, image, "height")}
             src={image?.publicId}
             alt={image.title}
             sizes="(max-width:767px) 100vw , 50vw"
             placeholder={dataUrl as PlaceholderValue}
             className='h-fit min-h-72 w-full rounded-[10px] bg-purple-100/20 object-cover'
             onLoad={() => { setIsTransforming && setIsTransforming(false) }}
-            onError={() => { debounce(() => { setIsTransforming && setIsTransforming(false) }, 8000)() }}
+            onError={() => { setDelay(() => { setIsTransforming && setIsTransforming(false) }, 8000)() }}
             {...transformationConfig}
           />
 

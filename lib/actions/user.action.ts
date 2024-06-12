@@ -1,10 +1,10 @@
 "use server";
 
-import { revalidatePath } from "next/cache";
-import User from "../database/models/user.model";
-import { connectToDatabase } from "../database/mongoose";
-import { handleError } from "../utils";
 import { CreateUserArguments, UpdateUserArguments } from "../definitions";
+import { connectToDatabase } from "../database/mongoose";
+import User from "../database/models/user.model";
+import { revalidatePath } from "next/cache";
+import { errorHandler } from "../utils";
 
 // CREATE
 export async function createUser(user: CreateUserArguments) {
@@ -14,11 +14,11 @@ export async function createUser(user: CreateUserArguments) {
 
     return JSON.parse(JSON.stringify(newUser));
   } catch (error) {
-    handleError(error);
+    errorHandler(error);
   }
 }
 
-// READ
+
 
 // UPDATE
 export async function updateUser(clerkId: string, user: UpdateUserArguments) {
@@ -33,7 +33,7 @@ export async function updateUser(clerkId: string, user: UpdateUserArguments) {
 
     return JSON.parse(JSON.stringify(updatedUser));
   } catch (error) {
-    handleError(error);
+    errorHandler(error);
   }
 }
 
@@ -55,7 +55,7 @@ export async function deleteUser(clerkId: string) {
 
     return deletedUser ? JSON.parse(JSON.stringify(deletedUser)) : null;
   } catch (error) {
-    handleError(error);
+    errorHandler(error);
   }
 }
 
@@ -70,6 +70,6 @@ export async function findUserById(userId: string) {
 
     return JSON.parse(JSON.stringify(user));
   } catch (error) {
-    handleError(error);
+    errorHandler(error);
   }
 }

@@ -1,25 +1,12 @@
 "use client";
 
-import Image from "next/image";
-import Link from "next/link";
-import { useSearchParams, useRouter } from "next/navigation";
-import { CldImage } from "next-cloudinary";
-
-import {
-  Pagination,
-  PaginationContent,
-  PaginationNext,
-  PaginationPrevious,
-} from "@/components/ui/pagination";
-import { transformationTypes } from "@/constants";
-import { ImageDef } from "@/lib/database/models/image.model";
-import { formUrlQuery } from "@/lib/utils";
-
-import { Button } from "../ui/button";
-
+import { createUrlQuery } from "@/lib/utils";
 import { Search } from "./Search";
-import { TransformationTypeKey } from "@/lib/definitions";
 import { Card } from "./Card";
+import { useSearchParams, useRouter } from "next/navigation";
+import { Pagination, PaginationContent, PaginationNext, PaginationPrevious, } from "@/components/ui/pagination";
+import { ImageDef } from "@/lib/definitions";
+
 
 export const Edits = ({
   hasSearch = false,
@@ -37,11 +24,11 @@ export const Edits = ({
   const router = useRouter();
   const searchParams = useSearchParams();
 
-  // PAGINATION HANDLER
+
   const onPageChange = (action: string) => {
     const pageValue = action === "next" ? Number(page) + 1 : Number(page) - 1;
 
-    const newUrl = formUrlQuery({
+    const newUrl = createUrlQuery({
       searchParams: searchParams.toString(),
       key: "page",
       value: pageValue,

@@ -1,14 +1,15 @@
 import React from "react";
-import { ImageDef } from "@/lib/database/models/image.model";
+import { ImageDef } from "@/lib/definitions";
 import Link from "next/link";
 import Image from "next/image";
 import { TransformationTypeKey } from "@/lib/definitions";
 import { transformationTypes } from "@/constants";
 import { CldImage } from "next-cloudinary";
+
 export const Card = ({ image }: { image: ImageDef }) => {
     return (
         <li>
-            <Link href={`/transformations/${image._id}`} className="flex flex-1 cursor-pointer flex-col gap-5 rounded-[16px] border-2 border-cyan-400  bg-black p-4 scale-transition-on-hover">
+            <Link href={`/transformations/${image._id}`} className="flex flex-1 cursor-pointer flex-col gap-5 rounded-[16px] border-2 border-cyan-400  bg-gray-900 p-4 scale-transition-on-hover">
                 <p className="font-semibold text-[20px] leading-[140%] mr-3 line-clamp-1 text-white text-center">
                     {image.title}
                 </p>
@@ -34,7 +35,7 @@ export const Card = ({ image }: { image: ImageDef }) => {
                     className="h-52 w-full rounded-[10px] object-cover border-2 border-white"
                     sizes="(max-width: 767px) 100vw, (max-width: 1279px) 50vw, 33vw"
                 />
-                <div className="flex flex-col items-center">
+                <div className="w-10 h-10 inline-flex items-center justify-center rounded-full border border-white mx-auto">
                     <Image
                         src={`${transformationTypes[
                             image.transformationType as TransformationTypeKey

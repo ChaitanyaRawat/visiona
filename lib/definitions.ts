@@ -1,6 +1,6 @@
 // The Argument types globally declared here are used at appropriate sections of the project to satisfy typescript :)
 
-import { ImageDef } from "./database/models/image.model";
+
 // USER SPECIFIC STUFF
 export type CreateUserArguments = {
   clerkId: string;
@@ -22,6 +22,29 @@ export type UpdateUserArguments = {
 
 
 // CLOUDINARY TRANSFORMATIONS SPECIFIC STUFF
+export interface ImageDef extends Document {
+  _id: any;
+  title: string;
+  transformationType: string;
+  publicId: string;
+  secureURL: string;
+  width?: number;
+  height?: number;
+  config?: object;
+  transformationUrl?: string;
+  aspectRatio?: string;
+  color?: string;
+  prompt?: string;
+  author: {
+    _id: string;
+    firstName: string;
+    lastName: string;
+  }
+  createdAt?: Date;
+  updatedAt?: Date;
+  isPrivate: boolean;
+}
+
 export type CreateImageArguments = {
   image: {
     title: string;
@@ -53,7 +76,7 @@ export type UpdateImageArguments = {
     transformationURL: string;
     aspectRatio: string | undefined;
     prompt: string | undefined;
-    color: string | undefined; 
+    color: string | undefined;
     isPrivate: boolean;
   };
   userId: string;
@@ -82,7 +105,7 @@ export type TransformationFormProps = {
   action: "Add" | "Update";
   userId: string;
   type: TransformationTypeKey;
-  
+
   data?: ImageDef | null;
   config?: Transformations | null;
 };
@@ -103,7 +126,7 @@ export type TransformedImageProps = {
 
 
 // URL QUERY STUFF
-export type FormUrlQueryParams = {
+export type CreateUrlArguments = {
   searchParams: string;
   key: string;
   value: string | number | null;
@@ -115,7 +138,7 @@ export type UrlQueryParams = {
   value: string | null;
 };
 
-export type RemoveUrlQueryParams = {
+export type DeleteUrlArguments = {
   searchParams: string;
   keysToRemove: string[];
 };

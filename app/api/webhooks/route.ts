@@ -1,4 +1,4 @@
-/* eslint-disable camelcase */
+
 import { clerkClient } from "@clerk/nextjs/server";
 import { WebhookEvent } from "@clerk/nextjs/server";
 import { headers } from "next/headers";
@@ -7,17 +7,21 @@ import { Webhook } from "svix";
 
 import { createUser, deleteUser, updateUser } from "@/lib/actions/user.action";
 
+/**
+ * Webhook handler for user events
+ * @param {Request} req - HTTP request object
+ * @returns {Promise<Response>} - HTTP response object
+ */
 export async function POST(req: Request) {
-  // You can find this in the Clerk Dashboard -> Webhooks -> choose the webhook
+  // Get webhook secret from environment variables
   const WEBHOOK_SECRET = process.env.WEBHOOK_SECRET;
-
   if (!WEBHOOK_SECRET) {
     throw new Error(
       "Please add WEBHOOK_SECRET from Clerk Dashboard to .env or .env.local"
     );
   }
 
-  // Get the headers
+  // Get SVIX headers
   const headerPayload = headers();
   const svix_id = headerPayload.get("svix-id");
   const svix_timestamp = headerPayload.get("svix-timestamp");
@@ -57,8 +61,9 @@ export async function POST(req: Request) {
   const { id } = evt.data;
   const eventType = evt.type;
 
-  // CREATE
+  // Handle user events
   if (eventType === "user.created") {
+    // Extract user data
     const { id, email_addresses, image_url, first_name, last_name, username } = evt.data;
     const user = {
       clerkId: id,
@@ -69,9 +74,10 @@ export async function POST(req: Request) {
       photo: image_url,
     };
 
+    // Create new user in database
     const newUser = await createUser(user);
 
-    // Set public metadata
+    // Update user metadata in Clerk
     if (newUser) {
       await clerkClient.users.updateUserMetadata(id, {
         publicMetadata: {
@@ -83,7 +89,6 @@ export async function POST(req: Request) {
     return NextResponse.json({ message: "OK", user: newUser });
   }
 
-  // UPDATE
   if (eventType === "user.updated") {
     const { id, image_url, first_name, last_name, username } = evt.data;
 
@@ -99,7 +104,6 @@ export async function POST(req: Request) {
     return NextResponse.json({ message: "OK", user: updatedUser });
   }
 
-  // DELETE
   if (eventType === "user.deleted") {
     const { id } = evt.data;
 
@@ -113,3 +117,4 @@ export async function POST(req: Request) {
 
   return new Response("", { status: 200 });
 }
+

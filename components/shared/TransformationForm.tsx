@@ -3,20 +3,18 @@ import React, { useState, useTransition, useEffect } from 'react'
 import { z } from 'zod'
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
-import { Button } from "@/components/ui/button"
-import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form"
+import { Form } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
 import { aspectRatioOptions, defaultValues, transformationTypes } from '@/constants'
 import { InputBuilder } from './InputBuilder'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-import { AspectRatioKey, debounce, deepMergeObjects } from '@/lib/utils'
+import { AspectRatioKey, setDelay, integrateObjects } from '@/lib/utils'
 import UploadWidget from './UploadWidget'
 import TransformedImage from './TransformedImage'
 import { getCldImageUrl } from 'next-cloudinary'
 import { createImage, updateImage } from '@/lib/actions/image.actions'
 import { useRouter } from 'next/navigation'
 
-import Image from 'next/image'
 import { Switch } from '../ui/switch'
 import { TransformationFormProps, Transformations } from '@/lib/definitions'
 
@@ -149,7 +147,7 @@ const TransformationForm = ({ action, data = null, userId, type, config = null }
   }
 
   const onInputChangeHandler = (fieldName: string, value: string, type: string, onChangeField: (value: string) => void) => {
-    debounce(() => {
+    setDelay(() => {
       setNewTransformation((prevState: any) => ({
         ...prevState,
         [type]: {
@@ -167,7 +165,7 @@ const TransformationForm = ({ action, data = null, userId, type, config = null }
   const onTransformHandler = async () => {
     setIsTransforming(true)
     setTransformationConfig(
-      deepMergeObjects(newTransformation, transformationConfig)
+      integrateObjects(newTransformation, transformationConfig)
     )
     setNewTransformation(null)
 
@@ -287,34 +285,12 @@ const TransformationForm = ({ action, data = null, userId, type, config = null }
                   onCheckedChange={field.onChange}
                 />
 
-
-
               )}
             />
           </div>
 
 
-
-
-
-
           <div className='flex flex-col items-center'>
-
-
-
-
-
-
-            {/* <button
-              type='button'
-              className='bg-cyan-500 mx-auto text-white bg-cover rounded-full py-4 px-6 font-semibold text-[16px] leading-[140%] h-[50px] w-1/2 md:h-[54px] cursor-pointer disabled:bg-cyan-700 capitalize scale-transition-on-hover-110'
-              disabled={isTransforming || newTransformation === null}
-              onClick={onTransformHandler}
-            >
-              {isTransforming ? 'Transforming...' : "Magic"}
-
-            </button> */}
-
 
             <button
               className=" my-1 w-[140px] cursor-pointer inline-flex items-center justify-center p-0.5 mb-2 me-2 overflow-hidden text-sm font-medium text-white rounded-xl border-2 border-cyan-400 hover:bg-cyan-500 scale-transition-on-hover-110"
@@ -335,8 +311,6 @@ const TransformationForm = ({ action, data = null, userId, type, config = null }
             </button>
 
           </div>
-
-
 
         </form>
       </Form>
