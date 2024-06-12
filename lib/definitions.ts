@@ -1,6 +1,6 @@
 // The Argument types globally declared here are used at appropriate sections of the project to satisfy typescript :)
 
-import { IImage } from "./database/models/image.model";
+import { ImageDef } from "./database/models/image.model";
 // USER SPECIFIC STUFF
 export type CreateUserArguments = {
   clerkId: string;
@@ -83,7 +83,7 @@ export type TransformationFormProps = {
   userId: string;
   type: TransformationTypeKey;
   
-  data?: IImage | null;
+  data?: ImageDef | null;
   config?: Transformations | null;
 };
 

@@ -13,7 +13,7 @@ import { AspectRatioKey, debounce, deepMergeObjects } from '@/lib/utils'
 import UploadWidget from './UploadWidget'
 import TransformedImage from './TransformedImage'
 import { getCldImageUrl } from 'next-cloudinary'
-import { addImage, updateImage } from '@/lib/actions/image.actions'
+import { createImage, updateImage } from '@/lib/actions/image.actions'
 import { useRouter } from 'next/navigation'
 
 import Image from 'next/image'
@@ -94,7 +94,7 @@ const TransformationForm = ({ action, data = null, userId, type, config = null }
 
       if (action === 'Add') {
         try {
-          const newImage = await addImage({
+          const newImage = await createImage({
             image: imageData,
             userId,
             path: '/'
@@ -216,7 +216,7 @@ const TransformationForm = ({ action, data = null, userId, type, config = null }
             name='title'
             formLabel='Image Name'
             className='w-full text-white'
-            render={({ field }) => <Input {...field} className='rounded-[16px] border-2 border-purple-200/20 shadow-sm shadow-purple-200/15  text-black disabled:opacity-100 font-semibold text-[16px] leading-[140%] h-[50px] md:h-[54px] focus-visible:ring-offset-0 px-4 py-3 focus-visible:ring-transparent !important' />}
+            render={({ field }) => <Input {...field} className='rounded-[16px] bg-white border-2 border-purple-200/20 shadow-sm shadow-purple-200/15  text-black disabled:opacity-100 font-semibold text-[16px] leading-[140%] h-[50px] md:h-[54px] focus-visible:ring-offset-0 px-4 py-3 focus-visible:ring-transparent !important' />}
           />
 
 
@@ -247,7 +247,7 @@ const TransformationForm = ({ action, data = null, userId, type, config = null }
                 render={(({ field }) => (
                   <Input
                     value={field.value}
-                    className='rounded-[16px] border-2 border-purple-200/20 shadow-sm shadow-purple-200/15  text-black disabled:opacity-100 font-semibold text-[16px] leading-[140%] h-[50px] md:h-[54px] focus-visible:ring-offset-0 px-4 py-3 focus-visible:ring-transparent !important'
+                    className='rounded-[16px] bg-white border-2 border-purple-200/20 shadow-sm shadow-purple-200/15  text-black disabled:opacity-100 font-semibold text-[16px] leading-[140%] h-[50px] md:h-[54px] focus-visible:ring-offset-0 px-4 py-3 focus-visible:ring-transparent !important'
                     onChange={(e) => onInputChangeHandler("prompt", e.target.value, type, field.onChange)}
                   />
                 ))}
@@ -262,7 +262,7 @@ const TransformationForm = ({ action, data = null, userId, type, config = null }
                   render={({ field }) => (
                     <Input
                       value={field.value}
-                      className='rounded-[16px] border-2 border-purple-200/20 shadow-sm shadow-purple-200/15  text-black disabled:opacity-100 font-semibold text-[16px] leading-[140%] h-[50px] md:h-[54px] focus-visible:ring-offset-0 px-4 py-3 focus-visible:ring-transparent !important'
+                      className='rounded-[16px] bg-white border-2 border-purple-200/20 shadow-sm shadow-purple-200/15  text-black disabled:opacity-100 font-semibold text-[16px] leading-[140%] h-[50px] md:h-[54px] focus-visible:ring-offset-0 px-4 py-3 focus-visible:ring-transparent !important'
                       onChange={(e) => onInputChangeHandler("color", e.target.value, 'recolor', field.onChange)}
                     />
                   )}
@@ -296,16 +296,16 @@ const TransformationForm = ({ action, data = null, userId, type, config = null }
 
 
 
-        
-
-          <div className='flex flex-col gap-4'>
 
 
+          <div className='flex flex-col items-center'>
 
 
 
 
-            <button
+
+
+            {/* <button
               type='button'
               className='bg-cyan-500 mx-auto text-white bg-cover rounded-full py-4 px-6 font-semibold text-[16px] leading-[140%] h-[50px] w-1/2 md:h-[54px] cursor-pointer disabled:bg-cyan-700 capitalize scale-transition-on-hover-110'
               disabled={isTransforming || newTransformation === null}
@@ -313,17 +313,27 @@ const TransformationForm = ({ action, data = null, userId, type, config = null }
             >
               {isTransforming ? 'Transforming...' : "Magic"}
 
-            </button>
+            </button> */}
 
 
             <button
+              className=" my-1 w-[140px] cursor-pointer inline-flex items-center justify-center p-0.5 mb-2 me-2 overflow-hidden text-sm font-medium text-white rounded-xl border-2 border-cyan-400 hover:bg-cyan-500 scale-transition-on-hover-110"
+              disabled={isTransforming || newTransformation === null}
+              onClick={onTransformHandler}>
+              <span className=" px-5 py-2.5 bg-opacity-0 font-bold">
+                {isTransforming ? 'Transforming...' : "Magic"}
+              </span>
+            </button>
+            <button
               type='submit'
-              className='bg-cyan-500 mx-auto text-white bg-cover rounded-full py-4 px-6 font-semibold text-[16px] leading-[140%] h-[50px] w-1/2 md:h-[54px] cursor-pointer disabled:bg-cyan-700 capitalize scale-transition-on-hover-110'
+              className="my-1 w-[140px] cursor-pointer inline-flex items-center justify-center p-0.5 mb-2 me-2 overflow-hidden text-sm font-medium text-white rounded-xl border-2 border-cyan-400 hover:bg-cyan-500 scale-transition-on-hover-110"
               disabled={isSubmitting || isTransforming || image === null || transformationConfig === null}
             >
-              {isSubmitting ? 'Submitting...' : "Save"}
-
+              <span className=" px-5 py-2.5 bg-opacity-0 font-bold">
+                {isSubmitting ? 'Saving...' : "Save"}
+              </span>
             </button>
+
           </div>
 
 

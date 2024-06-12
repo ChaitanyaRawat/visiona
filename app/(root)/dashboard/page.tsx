@@ -4,8 +4,8 @@ import { redirect } from "next/navigation";
 
 import { Edits } from "@/components/shared/Edits";
 import Header from "@/components/shared/Header";
-import { getUserImages } from "@/lib/actions/image.actions";
-import { getUserById } from "@/lib/actions/user.action";
+import { findUserImages } from "@/lib/actions/image.actions";
+import { findUserById } from "@/lib/actions/user.action";
 import { SearchParamProps } from "@/lib/definitions";
 
 const Dashboard = async ({ searchParams }: SearchParamProps) => {
@@ -14,8 +14,8 @@ const Dashboard = async ({ searchParams }: SearchParamProps) => {
 
   if (!userId) redirect("/sign-in");
 
-  const user = await getUserById(userId);
-  const images = await getUserImages({ page, userId: user._id });
+  const user = await findUserById(userId);
+  const images = await findUserImages({ page, userId: user._id });
 
   return (
     <div className="bg-black p-20">

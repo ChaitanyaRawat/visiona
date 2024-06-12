@@ -4,7 +4,7 @@ import Header from '@/components/shared/Header'
 import { transformationTypes } from '@/constants'
 import TransformationForm from '@/components/shared/TransformationForm'
 import { auth } from '@clerk/nextjs/server'
-import { getUserById } from '@/lib/actions/user.action'
+import { findUserById } from '@/lib/actions/user.action'
 import { redirect } from 'next/navigation'
 import Image from 'next/image'
 import { SearchParamProps, TransformationTypeKey } from '@/lib/definitions'
@@ -13,7 +13,7 @@ const AddTransformationTypePage = async ({ params: { type } }: SearchParamProps)
   const { userId } = auth()
   const transformation = transformationTypes[type]
   if (!userId) redirect("/sign-in")
-  const user = await getUserById(userId)
+  const user = await findUserById(userId)
   return (
     <>
       <div className="w-10  rounded-full border-2 bg-black border-white mb-4 p-1 mx-auto">

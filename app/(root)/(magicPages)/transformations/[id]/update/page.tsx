@@ -4,17 +4,17 @@ import { redirect } from "next/navigation";
 import Header from "@/components/shared/Header";
 import TransformationForm from "@/components/shared/TransformationForm";
 import { transformationTypes } from "@/constants";
-import { getUserById } from "@/lib/actions/user.action";
-import { getImageById } from "@/lib/actions/image.actions";
-import { TransformationTypeKey,SearchParamProps } from "@/lib/definitions";
+import { findUserById } from "@/lib/actions/user.action";
+import { findImageById } from "@/lib/actions/image.actions";
+import { TransformationTypeKey, SearchParamProps } from "@/lib/definitions";
 
 const Page = async ({ params: { id } }: SearchParamProps) => {
   const { userId } = auth();
 
   if (!userId) redirect("/sign-in");
 
-  const user = await getUserById(userId);
-  const image = await getImageById(id);
+  const user = await findUserById(userId);
+  const image = await findImageById(id);
 
   const transformation =
     transformationTypes[image.transformationType as TransformationTypeKey];
@@ -28,7 +28,7 @@ const Page = async ({ params: { id } }: SearchParamProps) => {
           action="Update"
           userId={user._id}
           type={image.transformationType as TransformationTypeKey}
-         
+
           config={image.config}
           data={image}
         />

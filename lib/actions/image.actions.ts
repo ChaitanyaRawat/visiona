@@ -17,7 +17,7 @@ const populateUser = (query: any) => query.populate({
 })
 
 // ADD IMAGE
-export async function addImage({ image, userId, path }: CreateImageArguments) {
+export async function createImage({ image, userId, path }: CreateImageArguments) {
   try {
     await connectToDatabase();
 
@@ -95,7 +95,7 @@ export async function toggleImagePrivacy(imageId: string,privacy:boolean) {
 
 
 // GET IMAGE
-export async function getImageById(imageId: string) {
+export async function findImageById(imageId: string) {
   try {
     await connectToDatabase();
 
@@ -110,7 +110,7 @@ export async function getImageById(imageId: string) {
 }
 
 // GET IMAGES
-export async function getAllPublicImages({ limit = 6, page = 1, searchQuery = '' }: {
+export async function findAllPublicImages({ limit = 6, page = 1, searchQuery = '' }: {
   limit?: number;
   page: number;
   searchQuery?: string;
@@ -174,7 +174,7 @@ export async function getAllPublicImages({ limit = 6, page = 1, searchQuery = ''
 }
 
 // GET IMAGES BY USER
-export async function getUserImages({
+export async function findUserImages({
   limit = 6,
   page = 1,
   userId,

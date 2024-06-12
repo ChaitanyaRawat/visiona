@@ -47,7 +47,7 @@ const TransformedImage = ({ image, type, title, transformationConfig, isTransfor
         )}
 
       </div>
-      {image?.publicId && transformationConfig ? (
+      {image?.publicId ? (
         <div className='relative'>
           <CldImage
             width={getImageSize(type, image, "width")}
@@ -68,7 +68,7 @@ const TransformedImage = ({ image, type, title, transformationConfig, isTransfor
                 src="/loader.gif"
                 width={80}
                 height={80}
-                alt='spinner'
+                alt='loader'
                 className='invert'
               />
               <p className="text-white/80">Hold on...</p>
