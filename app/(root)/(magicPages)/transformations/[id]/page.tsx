@@ -20,7 +20,7 @@ const ImageDetails = async ({ params: { id } }: SearchParamProps) => {
       <Header title={image.title} />
 
       <section className="mt-5 flex flex-col justify-center items-center gap-4">
-        <div className="font-medium text-[14px] leading-[120%] md:font-medium text-[16px] leading-[140%] flex  gap-2">
+        <div className="font-medium md:font-medium text-[16px] leading-[140%] flex  gap-2">
           <p className="text-cyan-400">Magic:</p>
           <p className=" capitalize text-white gap-2 flex justify-center items-center font-bold">
             {/* <Image
@@ -36,7 +36,7 @@ const ImageDetails = async ({ params: { id } }: SearchParamProps) => {
 
         {image.prompt && (
           <>
-            <div className="font-medium text-[14px] leading-[120%] md:font-medium text-[16px] leading-[140%] flex gap-2 ">
+            <div className="font-medium md:font-medium text-[16px] leading-[140%] flex gap-2 ">
               <p className="text-cyan-400">Targeted Object:</p>
               <p className=" capitalize text-white">{image.prompt}</p>
             </div>
@@ -45,7 +45,7 @@ const ImageDetails = async ({ params: { id } }: SearchParamProps) => {
 
         {image.color && (
           <>
-            <div className="font-medium text-[14px] leading-[120%] md:font-medium text-[16px] leading-[140%] flex gap-2">
+            <div className="font-medium md:font-medium text-[16px] leading-[140%] flex gap-2">
               <p className="text-cyan-400">Color:</p>
               <p className=" capitalize text-white">{image.color}</p>
             </div>
@@ -54,7 +54,7 @@ const ImageDetails = async ({ params: { id } }: SearchParamProps) => {
 
         {image.aspectRatio && (
           <>
-            <div className="font-medium text-[14px] leading-[120%] md:font-medium text-[16px] leading-[140%] flex gap-2">
+            <div className="font-medium md:font-medium text-[16px] leading-[140%] flex gap-2">
               <p className="text-cyan-400">Aspect Ratio:</p>
               <p className=" capitalize text-white">{image.aspectRatio}</p>
             </div>
