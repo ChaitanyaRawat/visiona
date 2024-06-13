@@ -89,7 +89,7 @@ const ImageDetails = async ({ params: { id } }: SearchParamProps) => {
 
         {userId === image.author.clerkId ? (
           <div className="mt-4 space-y-4 flex flex-col items-center">
-            {/* <button type="button" className="bg-cyan-500 mx-auto text-white bg-cover rounded-full py-4 px-6 font-semibold text-[16px] leading-[140%] h-[50px] w-1/2 md:h-[54px] cursor-pointer disabled:bg-cyan-700 capitalize .scale-transition-on-hover-110"> */}
+          
             <Link href={`/transformations/${image._id}/update`}>
               <button className="inline-flex items-center justify-center p-0.5 me-2 overflow-hidden text-sm font-medium text-white rounded-xl border-2 border-cyan-400 hover:bg-cyan-500 scale-transition-on-hover-110">
                 <span className=" px-5 py-2.5 bg-opacity-0 font-bold">
@@ -97,7 +97,7 @@ const ImageDetails = async ({ params: { id } }: SearchParamProps) => {
                 </span>
               </button>
             </Link>
-            {/* </button> */}
+           
 
             <DeleteConfirmation imageId={image._id} />
           </div>

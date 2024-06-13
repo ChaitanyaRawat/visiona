@@ -4,11 +4,8 @@ import Image from 'next/image'
 const page = () => {
   return (
 
-    <div>
-      {/* <div className="sticky top-0 h-screen flex flex-col items-center justify-center bg-gradient-to-b from-green-200 to-blue-200">
-          <h2 className="text-4xl font-bold">The First slide</h2>
-          <p className="mt-2">Scroll Down for next slide</p>
-        </div> */}
+    <>
+
       <div className="min-h-screen flex flex-col items-center justify-center bg-[url('/read-more-page/about1.jpg')] bg-no-repeat bg-cover text-white">
 
         <div className="sm:flex items-center max-w-screen-xl">
@@ -26,15 +23,73 @@ const page = () => {
                 Welcome to Visiona, where the power of AI transforms your images into stunning creations. Our cutting-edge website utilizes advanced artificial intelligence algorithms to offer a range of transformative services for your visuals.
               </p>
               <p className="text-white font-bold my-3">
-                With Visiona, you can effortlessly remove backgrounds, enhance images, generate fills, and recolor objects with just a few clicks. Whether you're a photographer looking to enhance your portfolio, a designer seeking inspiration, or simply someone who wants to unleash their creativity, Visiona provides the tools to elevate your images to the next level.
+                With Visiona, you can effortlessly remove backgrounds, remove unwanted objects ,enhance images, automaticaly expands images, and recolor objects with just a few clicks. Whether you're a photographer looking to enhance your portfolio, a designer seeking inspiration, or simply someone who wants to unleash their creativity, Visiona provides the tools to elevate your images to the next level.
               </p>
               <p className="text-white font-bold my-3">
                 Powered by state-of-the-art machine learning models, Visiona ensures precise and professional results every time. Say goodbye to tedious manual editing and hello to seamless, AI-powered transformations.
               </p>
               <p className="text-white font-bold my-3">
-                Join the visionaries and explore the endless possibilities with Visiona today. Unlock the true potential of your images with AI at your fingertips.
+                Join the visionary revolution and explore the endless possibilities with Visiona today. Unlock the true potential of your images with AI at your fingertips.
               </p>
             </div>
+          </div>
+        </div>
+
+      </div>
+
+
+      
+      <div className="min-h-screen flex flex-col items-center justify-center bg-[url('/read-more-page/about1.jpg')] bg-no-repeat bg-cover text-white">
+
+
+        <div className="container mx-auto p-4 text-center">
+          <h2 className="text-5xl font-bold mt-4">Visiona Features</h2>
+          <p className="dark:text-gray-600 my-4">The following are the features of Visiona</p>
+
+          <div className="container mx-auto py-3">
+
+
+            <div className="flex flex-col overflow-hidden shadow-sm lg:flex-row rounded-xl my-2">
+              <img src="/features/fill.jpg" alt="" className="h-80 aspect-video" />
+              <div className="flex flex-col justify-center flex-1 p-6 bg-gray-800">
+                <h3 className="text-3xl font-bold">Automated Image Expansion</h3>
+                <p className='text-center my-2'>AI outpainting for enlarging an image's scope</p>
+              </div>
+            </div>
+
+            <div className="flex flex-col overflow-hidden rounded-xl shadow-sm lg:flex-row-reverse my-2">
+              <img src="/features/remove-bg.jpg" alt="" className="h-80 dark:bg-gray-500 aspect-video" />
+              <div className="flex flex-col justify-center flex-1 p-6 bg-gray-800">
+                <h3 className="text-3xl font-bold p">Background Removal</h3>
+                <p className='text-center my-2'>Utilizes AI to eliminate the image's background</p>
+              </div>
+            </div>
+
+            <div className="flex flex-col overflow-hidden shadow-sm lg:flex-row rounded-xl my-2">
+              <img src="/features/remove.jpg" alt="" className="h-80 aspect-video" />
+              <div className="flex flex-col justify-center flex-1 p-6 bg-gray-800">
+                <h3 className="text-3xl font-bold">Erase Object</h3>
+                <p className='text-center my-2'>Specify and Remove elements that are not needed in the picture</p>
+              </div>
+            </div>
+
+            <div className="flex flex-col overflow-hidden rounded-xl shadow-sm lg:flex-row-reverse my-2">
+              <img src="/features/enhance.jpeg" alt="" className="h-80 dark:bg-gray-500 aspect-video" />
+              <div className="flex flex-col justify-center flex-1 p-6 bg-gray-800">
+                <h3 className="text-3xl font-bold">Image Enhancement</h3>
+                <p className='text-center my-2'>Enhances images by eliminating unwanted noise and imperfections</p>
+              </div>
+            </div>
+
+            <div className="flex flex-col overflow-hidden shadow-sm lg:flex-row rounded-xl my-2">
+              <img src="/features/recolor.jpg" alt="" className="h-80 aspect-video" />
+              <div className="flex flex-col justify-center flex-1 p-6 bg-gray-800">
+                <h3 className="text-3xl font-bold">Object Recolor</h3>
+                <p className='text-center my-2'>Detect and change color of objects in the image</p>
+              </div>
+            </div>
+
+
           </div>
         </div>
 
@@ -157,19 +212,9 @@ const page = () => {
         </div>
 
 
-
-
-
       </div>
 
-
-
-
-
-
-
-
-    </div>
+    </>
 
   )
 }

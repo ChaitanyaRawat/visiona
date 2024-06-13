@@ -14,7 +14,7 @@ const page = () => {
       <div className="container px-5 py-24 mx-auto">
         <div className="flex flex-wrap w-full mb-20 flex-col items-center text-center">
           <h1 className="sm:text-3xl text-2xl font-medium title-font mb-2 text-white">Magical Transformations</h1>
-          <p className="lg:w-1/2 w-full leading-relaxed text-opacity-80">Visiona provides the following features</p>
+          <p className="lg:w-1/2 w-full leading-relaxed text-opacity-80">Choose Your Magic</p>
         </div>
         <div className="flex flex-wrap -m-4">
 
