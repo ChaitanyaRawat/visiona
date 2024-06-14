@@ -12,7 +12,7 @@ const page = () => {
                     <div className="mt-16 grid divide-x divide-y  divide-gray-700 overflow-hidden  rounded-3xl border text-gray-600 border-gray-700 sm:grid-cols-2 lg:grid-cols-4  lg:divide-y-0 xl:grid-cols-4">
                         <div className="group relative bg-gray-900 transition hover:z-[1] hover:shadow-2xl  hover:shadow-gray-600/10">
                             <div className="relative space-y-8 py-12 p-8">
-                                <img src="/contact/gmail.png" loading="lazy" width="200" height="200" className="w-12 h-12 rounded-full" />
+                                <Image src="/contact/gmail.png" alt='icon' loading="lazy" width="200" height="200" className="w-12 h-12 rounded-full" />
                                 <div className="space-y-2">
                                     <h5 className="text-xl font-semibold text-white transition group-hover:text-secondary">Email</h5>
                                     <p className="text-gray-300">chaitanyarawat95@gmail.com</p>
@@ -21,7 +21,7 @@ const page = () => {
                         </div>
                         <div className="group relative bg-gray-900 transition hover:z-[1] hover:shadow-2xl hover:shadow-gray-600/10">
                             <div className="relative space-y-8 py-12 p-8">
-                                <img src="/contact/whatsapp.webp" loading="lazy" width="200" height="200" className="w-12 h-12 rounded-full" />
+                                <Image src="/contact/whatsapp.webp" alt='icon' loading="lazy" width="200" height="200" className="w-12 h-12 rounded-full" />
                                 <div className="space-y-2">
                                     <h5 className="text-xl font-semibold text-white transition group-hover:text-secondary">Whatsapp and Phone</h5>
                                     <p className="text-gray-300">+91 8586010743</p>
@@ -30,7 +30,7 @@ const page = () => {
                         </div>
                         <div className="group relative bg-gray-900 transition hover:z-[1] hover:shadow-2xl hover:shadow-gray-600/10">
                             <div className="relative space-y-8 py-12 p-8">
-                                <img src="/contact/linkedin.webp" loading="lazy" width="200" height="200" className="w-12 h-12 rounded-full" />
+                                <Image src="/contact/linkedin.webp" alt='icon' loading="lazy" width="200" height="200" className="w-12 h-12 rounded-full" />
                                 <div className="space-y-2">
                                     <h5 className="text-xl font-semibold text-white transition group-hover:text-secondary">Linkedin</h5>
                                     <p className="text-gray-300">chaitanya-rawat-bb8b00279</p>
@@ -39,7 +39,7 @@ const page = () => {
                         </div>
                         <div className="group relative bg-gray-900 transition hover:z-[1] hover:shadow-2xl hover:shadow-gray-600/10">
                             <div className="relative space-y-8 py-12 p-8">
-                                <img src="/contact/insta.webp" loading="lazy" width="200" height="200" className="w-12 h-12 rounded-full" />
+                                <Image src="/contact/insta.webp" alt='icon' loading="lazy" width="200" height="200" className="w-12 h-12 rounded-full" />
                                 <div className="space-y-2">
                                     <h5 className="text-xl font-semibold text-white transition group-hover:text-secondary">Instagram</h5>
                                     <p className="text-gray-300">chaitanya_rawat_senpai</p>

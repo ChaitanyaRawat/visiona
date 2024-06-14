@@ -38,7 +38,7 @@ const page = () => {
       </div>
 
 
-      
+
       <div className="min-h-screen flex flex-col items-center justify-center bg-[url('/read-more-page/about1.jpg')] bg-no-repeat bg-cover text-white">
 
 
@@ -50,7 +50,9 @@ const page = () => {
 
 
             <div className="flex flex-col overflow-hidden shadow-sm lg:flex-row rounded-xl my-2">
-              <img src="/features/fill.jpg" alt="" className="h-80 aspect-video" />
+              <div className="max-h-80">
+                <Image src="/features/fill.jpg" layout='responsive' width={0} height={0} alt='icon' className='max-h-80 w-auto' />
+              </div>
               <div className="flex flex-col justify-center flex-1 p-6 bg-gray-800">
                 <h3 className="text-3xl font-bold">Automated Image Expansion</h3>
                 <p className='text-center my-2'>AI outpainting for enlarging an image's scope</p>
@@ -58,7 +60,10 @@ const page = () => {
             </div>
 
             <div className="flex flex-col overflow-hidden rounded-xl shadow-sm lg:flex-row-reverse my-2">
-              <img src="/features/remove-bg.jpg" alt="" className="h-80 dark:bg-gray-500 aspect-video" />
+
+              <div className="max-h-80">
+                <Image src="/features/remove-bg.jpg" layout='responsive' width={0} height={0} alt='icon' className='max-h-80 w-auto' />
+              </div>
               <div className="flex flex-col justify-center flex-1 p-6 bg-gray-800">
                 <h3 className="text-3xl font-bold p">Background Removal</h3>
                 <p className='text-center my-2'>Utilizes AI to eliminate the image's background</p>
@@ -66,7 +71,10 @@ const page = () => {
             </div>
 
             <div className="flex flex-col overflow-hidden shadow-sm lg:flex-row rounded-xl my-2">
-              <img src="/features/remove.jpg" alt="" className="h-80 aspect-video" />
+
+              <div className="max-h-80">
+                <Image src="/features/remove.jpg" layout='responsive' width={0} height={0} alt='icon' className='max-h-80 w-auto' />
+              </div>
               <div className="flex flex-col justify-center flex-1 p-6 bg-gray-800">
                 <h3 className="text-3xl font-bold">Erase Object</h3>
                 <p className='text-center my-2'>Specify and Remove elements that are not needed in the picture</p>
@@ -74,7 +82,10 @@ const page = () => {
             </div>
 
             <div className="flex flex-col overflow-hidden rounded-xl shadow-sm lg:flex-row-reverse my-2">
-              <img src="/features/enhance.jpeg" alt="" className="h-80 dark:bg-gray-500 aspect-video" />
+
+              <div className="max-h-80">
+                <Image src="/features/enhance.jpeg" layout='responsive' width={0} height={0} alt='icon' className='max-h-80 w-auto' />
+              </div>
               <div className="flex flex-col justify-center flex-1 p-6 bg-gray-800">
                 <h3 className="text-3xl font-bold">Image Enhancement</h3>
                 <p className='text-center my-2'>Enhances images by eliminating unwanted noise and imperfections</p>
@@ -82,7 +93,9 @@ const page = () => {
             </div>
 
             <div className="flex flex-col overflow-hidden shadow-sm lg:flex-row rounded-xl my-2">
-              <img src="/features/recolor.jpg" alt="" className="h-80 aspect-video" />
+              <div className="max-h-80">
+                <Image src="/features/recolor.jpg" layout='responsive' width={0} height={0} alt='icon' className='max-h-80 w-auto' />
+              </div>
               <div className="flex flex-col justify-center flex-1 p-6 bg-gray-800">
                 <h3 className="text-3xl font-bold">Object Recolor</h3>
                 <p className='text-center my-2'>Detect and change color of objects in the image</p>
@@ -107,42 +120,57 @@ const page = () => {
           <div className="container mx-auto py-3">
 
             <div className="flex flex-col overflow-hidden shadow-sm lg:flex-row rounded-xl my-2">
-              <img src="/read-more-page/nextjs-logo.png" alt="" className="h-80 aspect-video" />
+
+              <div className="max-h-80">
+                <Image src="/read-more-page/nextjs-logo.png" layout='responsive' width={0} height={0} alt='icon' className='max-h-80 w-auto' />
+              </div>
               <div className="flex flex-col justify-center flex-1 p-6 bg-gray-800">
                 <h3 className="text-2xl font-bold">To Learn Building Production-ready Full-Stack websites using Next.js</h3>
               </div>
             </div>
 
             <div className="flex flex-col overflow-hidden rounded-xl shadow-sm lg:flex-row-reverse my-2">
-              <img src="/read-more-page/api-handling.jpeg" alt="" className="h-80 dark:bg-gray-500 aspect-video" />
+              <div className="max-h-80">
+                <Image src="/read-more-page/api-handling.jpeg" layout='responsive' width={0} height={0} alt='icon' className='max-h-80 w-auto' />
+              </div>
               <div className="flex flex-col justify-center flex-1 p-6 bg-gray-800">
                 <h3 className="text-2xl font-bold">To Learn API Handling</h3>
               </div>
             </div>
 
             <div className="flex flex-col overflow-hidden shadow-sm lg:flex-row rounded-xl my-2">
-              <img src="/read-more-page/ai-image.avif" alt="" className="h-80 aspect-video" />
+              <div className="max-h-80">
+                <Image src="/read-more-page/ai-image.avif" layout='responsive' width={0} height={0} alt='icon' className='max-h-80 w-auto' />
+              </div>
               <div className="flex flex-col justify-center flex-1 p-6 bg-gray-800">
                 <h3 className="text-2xl font-bold">To Integrate Power of AI in a website</h3>
               </div>
             </div>
 
             <div className="flex flex-col overflow-hidden rounded-xl shadow-sm lg:flex-row-reverse my-2">
-              <img src="/read-more-page/data-sync.webp" alt="" className="h-80 dark:bg-gray-500 aspect-video" />
+              <div className="max-h-80">
+                <Image src="/read-more-page/data-sync.webp" layout='responsive' width={0} height={0} alt='icon' className='max-h-80 w-auto' />
+              </div>
               <div className="flex flex-col justify-center flex-1 p-6 bg-gray-800">
                 <h3 className="text-2xl font-bold">To Learn Synchronizing data between Databases of Multiple Websites</h3>
               </div>
             </div>
 
             <div className="flex flex-col overflow-hidden shadow-sm lg:flex-row rounded-xl my-2">
-              <img src="/read-more-page/ui-ux.webp" alt="" className="h-80 aspect-video" />
+             
+              <div className="max-h-80">
+                <Image src="/read-more-page/ui-ux.webp" layout='responsive' width={0} height={0} alt='icon' className='max-h-80 w-auto' />
+              </div>
               <div className="flex flex-col justify-center flex-1 p-6 bg-gray-800">
                 <h3 className="text-2xl font-bold">To Learn Creating Attractive and Responsive UI  </h3>
               </div>
             </div>
 
             <div className="flex flex-col overflow-hidden rounded-xl shadow-sm lg:flex-row-reverse my-2">
-              <img src="/read-more-page/client-server.avif" alt="" className="h-80 dark:bg-gray-500 aspect-video" />
+              
+              <div className="max-h-80">
+                <Image src="/read-more-page/client-server.avif" layout='responsive' width={0} height={0} alt='icon' className='max-h-80 w-auto' />
+              </div>
               <div className="flex flex-col justify-center flex-1 p-6 bg-gray-800">
                 <h3 className="text-2xl font-bold">To Learn Building and Handling Client and Server Components</h3>
               </div>
