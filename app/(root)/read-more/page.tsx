@@ -23,7 +23,7 @@ const page = () => {
                 Welcome to Visiona, where the power of AI transforms your images into stunning creations. Our cutting-edge website utilizes advanced artificial intelligence algorithms to offer a range of transformative services for your visuals.
               </p>
               <p className="text-white font-bold my-3">
-                With Visiona, you can effortlessly remove backgrounds, remove unwanted objects ,enhance images, automaticaly expands images, and recolor objects with just a few clicks. Whether you're a photographer looking to enhance your portfolio, a designer seeking inspiration, or simply someone who wants to unleash their creativity, Visiona provides the tools to elevate your images to the next level.
+                With Visiona, you can effortlessly remove backgrounds, remove unwanted objects ,enhance images, automaticaly expands images, and recolor objects with just a few clicks. Whether you&apos;re a photographer looking to enhance your portfolio, a designer seeking inspiration, or simply someone who wants to unleash their creativity, Visiona provides the tools to elevate your images to the next level.
               </p>
               <p className="text-white font-bold my-3">
                 Powered by state-of-the-art machine learning models, Visiona ensures precise and professional results every time. Say goodbye to tedious manual editing and hello to seamless, AI-powered transformations.
@@ -55,7 +55,7 @@ const page = () => {
               </div>
               <div className="flex flex-col justify-center flex-1 p-6 bg-gray-800">
                 <h3 className="text-3xl font-bold">Automated Image Expansion</h3>
-                <p className='text-center my-2'>AI outpainting for enlarging an image's scope</p>
+                <p className='text-center my-2'>AI outpainting for enlarging an image&apos;s scope</p>
               </div>
             </div>
 
@@ -66,7 +66,7 @@ const page = () => {
               </div>
               <div className="flex flex-col justify-center flex-1 p-6 bg-gray-800">
                 <h3 className="text-3xl font-bold p">Background Removal</h3>
-                <p className='text-center my-2'>Utilizes AI to eliminate the image's background</p>
+                <p className='text-center my-2'>Utilizes AI to eliminate the image&apos;s background</p>
               </div>
             </div>
 

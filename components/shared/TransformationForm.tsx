@@ -66,7 +66,7 @@ const TransformationForm = ({ action, data = null, userId, type, config = null }
     // console.log(values)
     setIsSubmitting(true)
 
-    if (image) {
+    if (image && image.width && image.height) {
       const transformationUrl = getCldImageUrl({
         width: image?.width,
         height: image?.height,
@@ -78,8 +78,8 @@ const TransformationForm = ({ action, data = null, userId, type, config = null }
         title: values.title,
         publicId: image?.publicId,
         transformationType: type,
-        width: image?.width,
-        height: image?.height,
+        width: image.width,
+        height: image.height,
         config: transformationConfig,
         secureURL: image?.secureURL,
         transformationURL: transformationUrl,
@@ -109,7 +109,7 @@ const TransformationForm = ({ action, data = null, userId, type, config = null }
       }
 
 
-      if (action === 'Update') {
+      if (action === 'Update' && data) {
         try {
           const updatedImage = await updateImage({
             image: {
