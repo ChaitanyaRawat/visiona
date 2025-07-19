@@ -33,7 +33,7 @@ const page = () => {
                                 <Image src="/contact/linkedin.webp" alt='icon' loading="lazy" width="200" height="200" className="w-12 h-12 rounded-full" />
                                 <div className="space-y-2">
                                     <h5 className="text-xl font-semibold text-white transition group-hover:text-secondary">Linkedin</h5>
-                                    <p className="text-gray-300">chaitanya-rawat-bb8b00279</p>
+                                    <p className="text-gray-300">cr7tech</p>
                                 </div>
                             </div>
                         </div>
@@ -42,7 +42,7 @@ const page = () => {
                                 <Image src="/contact/insta.webp" alt='icon' loading="lazy" width="200" height="200" className="w-12 h-12 rounded-full" />
                                 <div className="space-y-2">
                                     <h5 className="text-xl font-semibold text-white transition group-hover:text-secondary">Instagram</h5>
-                                    <p className="text-gray-300">chaitanya_rawat_senpai</p>
+                                    <p className="text-gray-300">chaitanya_kun</p>
                                 </div>
                             </div>
                         </div>
